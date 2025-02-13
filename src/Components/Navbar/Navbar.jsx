@@ -3,6 +3,7 @@ import './Navbar.css';
 import menu from '../Assets/icon-menu.svg';
 import close from '../Assets/icon-menu-close.svg';
 import logo from  '../Assets/logo1.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -33,15 +34,15 @@ const Navbar = () => {
             <img className='menu_icon' onClick={handleToggle} src={close} alt="Menu Icon" />
             <ul className='list-items '>
             <hr />
-            <li > Home </li>
+            <li > <Link style={{textDecoration: 'none'}} to='/'>Home</Link></li>
             <hr />
-            <li> Products </li>
+            <li> <Link style={{textDecoration: 'none'}} to='/products'>Products</Link> </li>
             <hr />
-            <li> Campaigns </li>
+            <li> <Link style={{textDecoration: 'none'}} to='/campaigns'>Campaigns</Link> </li>
             <hr />
-            <li> Order </li>
+            <li> <Link style={{textDecoration: 'none'}} to='/order'>Order</Link> </li>
             <hr />
-            <li> Profile </li>
+            <li> <Link style={{textDecoration: 'none'}} to='/profile'>Profile</Link> </li>
             <hr />
             
           </ul>
