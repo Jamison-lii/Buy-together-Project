@@ -1,9 +1,10 @@
 .openMessage{
-    margin-left: 10px;
+    margin-left: 15px;
     margin-top:35px;
     font-size: 30px;
-    color: #565656;
+    color: #424242;
     font-weight: 500;
+    line-height: 35px;
 }
 
 /*.openMessage span{
@@ -12,9 +13,9 @@
 }*/
 .homeContent{
     margin-top: 27px;
-    margin-left: 0px;
+    margin-left: 5px;
     font-size: 20px;
-    color: #565656;
+    color: #5c5b5b;
   /*  background-color: #e7e70c;*/
     width: 360px;
     height: 85px;
@@ -25,11 +26,12 @@
 }
 
 .seeCampaigns-btn{
-    background-color: #252525;
+    background-color: #0b0b0b;
     color: white;
     width: 250px;
     margin-left: 55px;
-    padding-top: 4px;
-    padding-bottom: 6px;
+    padding-top: 10px;
+    padding-bottom: 15px;
     margin-top: 13px;
+    border-radius: 3px
 }
