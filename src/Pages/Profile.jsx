@@ -1,6 +1,6 @@
 import React from 'react'
 import  './Styles/Profile.css'
-import profile from '../Components/Assets/profile.png'
+import profile from '../Components/Assets/Profile.png'
 
 const Profile = () => {
   return (
