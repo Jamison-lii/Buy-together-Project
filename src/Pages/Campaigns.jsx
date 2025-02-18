@@ -8,8 +8,11 @@ const Campaigns = () => {
 
   return (
     <div>
+      <p className="heading1">
+        Campaigns
+      </p>
       <div className="openText">
-        <p className='openText1'>Get Up to 50% Discount on</p>
+        <p className='openText1'>Get up to 50% off on</p>
         <p className='openText2'> Bulk Purchases</p>
       </div>
       <div className='containerforSearch'>

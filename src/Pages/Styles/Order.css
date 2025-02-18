@@ -1,4 +1,69 @@
 .order{
     margin-top: 20px;
-    margin-left: 10%;
+    margin-left: 5%;
+}
+
+.heading{
+   font-size: 30px;
+   font-weight: 600;
+   margin-left: 33%;
+   margin-bottom: 10px;
+}
+
+.OpenText{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+
+
+
+/**********************************/
+
+.sections{
+    margin-top: 0px;
+    margin-left: 5%;
+   display: flex;
+   gap: 30px;
+   font-family: Poppins;
+   font-weight: 600;
+
+}
+
+.AllOrders{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: -5%;
+   
+}
+
+.AllOrders hr{
+    width: 70%;
+    border: 1.5px solid #252525;
+}
+
+.InProcess{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.InProcess hr{
+    width: 70%;
+    border: 1.5px solid #252525;
+}
+
+.Done{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Done hr{
+    width: 70%;
+    border: 1.5px solid #252525;
 }
