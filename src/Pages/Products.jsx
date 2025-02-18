@@ -13,7 +13,10 @@ const Products = () => {
         <div className="head-description">
           Find the latest products just for you 
         </div>
-       <Search placeholder= '...Search Products'/> 
+        <div className="searchComponent">
+          <Search placeholder= '...Search Products'/> 
+        </div>
+      
        <Categories/>
     </div>
   )
