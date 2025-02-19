@@ -66,7 +66,7 @@ const Profile = () => {
 
      <div className="info-div1">
      {/*  <hr />*/}
-    <div className="info1">
+    <div className="info2">
       <div className="Address1">
         Payment Details
       </div>
