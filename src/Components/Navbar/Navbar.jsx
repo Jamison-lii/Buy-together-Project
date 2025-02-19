@@ -61,6 +61,11 @@ const Navbar = () => {
             <hr />
             <li> <Link style={{textDecoration: 'none'}} to='/profile'>Profile</Link> </li>
             <hr />
+
+            <li> <Link style={{textDecoration: 'none'}} to='/auth'>Login/SignUp</Link> </li>
+            <hr />
+            <li> <Link style={{textDecoration: 'none'}} to='/'>Other</Link> </li>
+            <hr />
             
           </ul>
            </div>

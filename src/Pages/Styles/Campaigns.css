@@ -30,7 +30,7 @@
 }
 
 .sections{
-    margin-top: 30px;
+    margin-top: 35px;
     margin-left: 30%;
    display: flex;
    gap: 70px;
@@ -45,7 +45,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 5%;
+    margin-left: 8%;
 }
 
 .foryou hr{

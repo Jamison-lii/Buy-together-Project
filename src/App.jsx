@@ -9,6 +9,7 @@ import Products from './Pages/Products'
 import Campaigns from './Pages/Campaigns'
 import Order from './Pages/Order'
 import Profile from './Pages/Profile'
+import Auth from './Pages/LoginSignUp'
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path= '/campaigns' element={<Campaigns/>}/>
         <Route path='/order' element={<Order/>} />
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/auth' element={<Auth/>}/>
 
       </Routes>
       </BrowserRouter>
