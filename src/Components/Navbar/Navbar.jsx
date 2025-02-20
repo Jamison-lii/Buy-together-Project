@@ -4,6 +4,7 @@ import menu1 from '../Assets/icon-menu.svg';
 import close from '../Assets/icon-menu-close.svg';
 import logo from  '../Assets/logo1.png';
 import { Link } from 'react-router-dom';
+import profile from '../Assets/Profile.png'
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -36,7 +37,12 @@ const Navbar = () => {
            
             <li onClick={() => {setMenu("Orders")}}> <Link style={{textDecoration: 'none'}} to='/order'>Order</Link> {menu==="Orders"?<hr/>:<></>}  </li>
             
-            <li onClick={() => {setMenu("Profile")}}> <Link style={{textDecoration: 'none'}} to='/profile'>Profile</Link> {menu==="Profile"?<hr/>:<></>}</li>
+            <li onClick={() => {setMenu("auth")}}> <Link style={{textDecoration: 'none'}} to='/auth'>Login</Link>{menu==="auth"?<hr/>:<></>} </li>
+           
+            <li className='profile_' onClick={() => {setMenu("Profile")}}> <Link style={{textDecoration: 'none'}} to='/profile'><img src={profile} alt="" /></Link> {menu==="Profile"?<hr/>:<></>}</li>
+
+            
+            
            
             
           </ul>

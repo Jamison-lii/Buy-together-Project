@@ -29,9 +29,69 @@
     background-color: #0b0b0b;
     color: white;
     width: 250px;
-    margin-left: 55px;
+    margin-left: 15%;
     padding-top: 10px;
     padding-bottom: 15px;
     margin-top: 13px;
     border-radius: 3px
 }
+
+.Trial{
+    display: flex;
+    flex-grow: 1;
+}
+
+
+@media (max-width: 599px){
+  .seeCampaigns-btn{
+    
+  }
+}
+
+@media (min-width: 600px){
+    .seeCampaigns-btn{
+       margin-left: 50%;
+       margin-top: 40px;
+    }
+    .openMessage{
+        font-size: 60px;
+        line-height: 70px;
+        margin-left: 50px
+
+    }
+    .homeContent{
+         margin-left: 50px;
+    }
+
+
+  }
+
+  @media (min-width: 1025px){
+    .seeCampaigns-btn{
+       margin-left: 70%;
+       margin-top: 40px;
+    }
+    .openMessage{
+        font-size: 80px;
+        line-height: 90px;
+        margin-left: 50px;
+        margin-top: 80px;
+    }
+
+    .seeCampaigns-btn{
+        padding-top: 30px;
+        padding-bottom: 30px;
+        width:500px;
+        margin-top: 80px
+    }
+
+   
+  }
+
+  @media (min-width: 420px) and (max-width: 599px){
+    .seeCampaigns-btn{
+        margin-left: 26%;
+       
+    }
+    
+  }
