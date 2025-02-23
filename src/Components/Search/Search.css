@@ -50,5 +50,20 @@
   .search-input::-webkit-search-cancel-button {
     display: none;
   }
+
+  @media (min-width: 599px){
+    .search-container{
+      width: 400%;
+    }
+    .search-input{
+      width: 700px;
+      height: 60%
+    }
+    .search-icon{
+    /*  position: absolute;*/
+      left: 88%;
+    }
+    
+  }
   
   

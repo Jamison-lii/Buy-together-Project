@@ -4,6 +4,7 @@
     font-weight: 600;
     font-size: 30px;
     margin-top: 20px;
+    
 }
 
 .head-description{
@@ -12,6 +13,101 @@
     margin-top: 28px;
 }
 
+.product-page-container{
+    width: 100%;
+   /* margin-left: 100px;*/
+   
+}
+
 .searchComponent{
     margin-top: -30px;
+}
+
+@media (min-width: 599px){
+    .heading2{
+        margin-left: 65%;
+        font-size: 60px;
+    }
+
+    .head-description{
+        margin-left:37%;
+        width: 100%;
+        font-size: 40px;
+        padding-right: 0px;
+        text-align: center;
+    }
+
+    .searchComponent{
+        margin-left: 35%;
+        width: 100%;
+    }
+    .cat-cont{
+        margin-left: 10%;
+        margin-top: 40px;
+        width: 100%;
+    }
+
+
+}
+
+@media (min-width: 735px){
+    .heading2{
+      margin-left: 50%;
+        font-size: 80px;
+    }
+    .head-description{
+        margin-left: 25%;
+        width: 100%;
+        font-size: 60px;
+        padding-right: 0px;
+        text-align: center;
+    }
+    .searchComponent{
+        margin-left: 24%;
+        margin-top: 5%;
+        width: 100%;
+    }
+    .cat-cont{
+        margin-left: -10%;
+        margin-top: 60px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1025px){
+    .heading2{
+        margin-left: 78%;
+        font-size: 100px;
+    }
+    .head-description{
+        margin-left: 45%;
+        width: 100%;
+        font-size: 80px;
+        padding-right: 0px;
+        text-align: center;
+    }
+    .searchComponent{
+        margin-left: 45%;
+        margin-top: 4%;
+        width: 100%;
+    }
+    .cat-cont{
+        margin-left: 10%;
+        margin-top: 80px;
+        width: 100%;
+    }
+}
+
+
+@media (min-width: 450px) and (max-width: 599px){
+    .heading2{
+        margin-left: 40%;
+       
+    }
+    .head-description{
+        margin-left: 6%;
+        font-size: 25px;
+        padding-right: 0px;
+        text-align: center;
+    }
 }

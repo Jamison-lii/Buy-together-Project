@@ -5,20 +5,24 @@ import './Styles/Products.css'
 
 const Products = () => {
   return (
-    <div>
+    <div className='product-page-container'>
+    
         <div className="heading2">
           Products
         </div>
-
+        
         <div className="head-description">
           Find the latest products just for you 
         </div>
+
         <div className="searchComponent">
           <Search placeholder= '...Search Products'/> 
         </div>
-      
-       <Categories/>
-    </div>
+      <div className="cat-cont">
+       <Categories/> 
+       </div>
+       </div> 
+
   )
 }
 

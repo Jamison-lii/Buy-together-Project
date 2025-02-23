@@ -24,9 +24,12 @@
 
 .openText1{
     font-size: 30px;
+    margin-left: 20px;
 }
 .openText2{
     font-size: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px
 }
 
 .sections{
@@ -63,4 +66,78 @@
 .campaigns hr{
     width: 70%;
     border: 1.5px solid #252525;
+}
+
+
+
+@media (min-width: 500px){
+    .heading1{
+        font-size: 40px;
+        margin-left: 34%;
+    }
+    .openText{
+        display: flex;
+       flex-direction: column;
+        margin-left: 10%;
+        font-size: 40px;
+        justify-content: center;
+        align-items: center;
+    }
+    .openText1{
+       width: 100%;
+        margin-left: 40%
+    }
+    .openText2{
+        margin-left: -5%
+    }
+    .sections{
+        
+        font-size: 25px;
+    }
+    .foryou{
+       
+        margin-left: 20%;
+    }
+}
+
+@media (min-width: 599px) {
+    .heading1{
+        font-size: 50px;
+        margin-left: 54%;
+    }
+    .openText{
+        display: flex;
+       flex-direction: column;
+        margin-left: 30%;
+      
+        
+        justify-content: center;
+        align-items: center;
+    }
+    .openText1{
+       width: 100%;
+        margin-left: 30%;
+        font-size: 40px;
+        
+    }
+    .openText2{
+        margin-left: 20%;
+        font-size: 40px;
+    }
+
+    .containerforSearch{
+        margin-left: 30%
+    }
+    .sections{
+        
+        font-size: 35px;
+        gap: 60px;
+    }
+    .foryou{
+      
+        margin-left: 10%;
+    }
+    .campaigns{
+        margin-left: 40px
+    }
 }

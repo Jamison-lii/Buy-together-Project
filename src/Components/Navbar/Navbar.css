@@ -34,7 +34,9 @@
 
 .line{
     margin-top: 1px;
-    width: 180%;
+
+   width: 180%;
+    
 }
 
 .drawer{
@@ -116,7 +118,7 @@
    
 }
 
-@media (max-width: 600px){
+@media (max-width: 599px){
     .list-items-lg{
         display: none;
     }
@@ -126,7 +128,13 @@
    
 }
 
-@media (min-width: 600px){
+@media (min-width: 500px) and (max-width:640px){
+   /* .line{
+        min-width: 100%;
+    }*/
+}
+
+@media (min-width: 599px){
     .list-items-lg{
         font-size: 20px;
         margin-left: 20px;
@@ -167,7 +175,7 @@ width: 180%;
     
 }
 
-@media (min-width:600px)  and (max-width: 800px){
+@media (min-width:599px)  and (max-width: 800px){
     .navlinks-section{
         margin-left: 20%
     }

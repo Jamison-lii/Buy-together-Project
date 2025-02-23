@@ -1,10 +1,13 @@
 import React from 'react'
 import './Styles/Home.css'
+import { Link } from 'react-router-dom'
+import all_product from '../Components/1RenderingAssets/all_product'
+import Card from '../Components/Cards/Card'
 
 const Home = () => {
   return (
     <div>
-      <div>
+     
       <div className="openMessage">
         Join Group Buying Campaigns  -Buy More Pay less
        
@@ -14,9 +17,22 @@ const Home = () => {
         
       </div> 
      <div className='Trial'> 
-      <button className='seeCampaigns-btn'>See Campaigns</button>
+      <Link style={{textDecoration: 'none'}} to='/createCampaign'> <button className='seeCampaigns-btn'>Create Campaigns</button> </Link>
       </div>
-    </div>
+
+      <div className="top">
+        <p>Top</p>
+    {/*<hr />*/ }    
+      </div>
+     <div>
+      <div className="card1">
+      {all_product.map((product) =>{
+             return <Card key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
+         })}
+      </div>
+      <div className="card2"></div>
+     </div>
+   
     </div>
   )
 }

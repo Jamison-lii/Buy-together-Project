@@ -3,9 +3,10 @@ import './Categories.css'
 
 const Categories = () => {
   return (
+    <div className>
     <div className="categories-container">
     <div className="categories">
-       <div className="varieties">
+       <div className="varieties1">
         Clothes
        </div>
 
@@ -17,14 +18,23 @@ const Categories = () => {
         Shoes
        </div>
 
-       <div className="varieties">
+       <div className="varieties4">
         Accessories
+       </div>
+
+     <div className="varieties">
+        Furniture
+       </div>
+
+       <div className="varieties">
+        Furniture
        </div>
 
        <div className="varieties">
         Furniture
        </div>
      </div>
+    </div>
     </div>
   )
 }

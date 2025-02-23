@@ -10,6 +10,7 @@ import Campaigns from './Pages/Campaigns'
 import Order from './Pages/Order'
 import Profile from './Pages/Profile'
 import Auth from './Pages/LoginSignUp'
+import CreateCampaign from './Pages/CreateCampaign'
 
 
 
@@ -28,7 +29,9 @@ function App() {
         <Route path='/order' element={<Order/>} />
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/auth' element={<Auth/>}/>
-
+        <Route path='/createCampaign' element={<CreateCampaign/>}/>
+        
+        
       </Routes>
       </BrowserRouter>
     </>
