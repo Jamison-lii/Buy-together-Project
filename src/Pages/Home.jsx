@@ -6,6 +6,7 @@ import Card from '../Components/Cards/Card'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate = useNavigate()
    return (
     <div>
      
@@ -27,9 +28,9 @@ const Home = () => {
       </div>
      <div>
       <div className="card1">
-      {all_product.map((product) =>{
-              <div key={product.id} onClick={() => navigate(`/:${product.id}`)}>
-             return <Card key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
+      {all_product.map((p) =>{
+        return      <div key={p.id} onClick={() => navigate(`/campaign/${p.id}`)}>
+               <Card key={p.id} image={p.image} name={p.name} new_price={p.new_price} />
              </div>
          })}
       </div>
