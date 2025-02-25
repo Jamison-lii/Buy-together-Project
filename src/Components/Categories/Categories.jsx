@@ -1,42 +1,45 @@
-import React from 'react'
-import './Categories.css'
+import React, { useState } from 'react';
+import './Categories.css';
+import data_product from '../1RenderingAssets/data';
+import Card from '../Cards/Card';
+import CardProduct from '../ProductCard/CardProduct';
+import { useNavigate } from 'react-router-dom';
 
 const Categories = () => {
+  const [cat, setCat] = useState("Clothes");
+
+  const navigate = useNavigate();
+
   return (
-    <div className>
-    <div className="categories-container">
-    <div className="categories">
-       <div className="varieties1">
-        Clothes
-       </div>
+    <div>
+      <div className="categories-container">
+        <div className="categories">
+          <div onClick={() => setCat("Shoes")} className="varieties1">Shoes</div>
+          
+          <div onClick={() => setCat("Clothes")} className="varieties">Clothes</div>
+          <div onClick={() => setCat("Phones")} className="varieties">Phones</div>
+          <div onClick={() => setCat("Accessories")} className="varieties4">Accessories</div>
+          <div onClick={() => setCat("Furniture")} className="varieties">Furniture</div>
+        </div>
+      </div>
 
-       <div className="varieties">
-        Phones
-       </div>
+      {/* Debugging Logs */}
+      {console.log("Selected Category:", cat)}
+      {console.log("Filtered Products:", data_product.filter(product => product.category === cat))}
 
-       <div className="varieties">
-        Shoes
-       </div>
-
-       <div className="varieties4">
-        Accessories
-       </div>
-
-     <div className="varieties">
-        Furniture
-       </div>
-
-       <div className="varieties">
-        Furniture
-       </div>
-
-       <div className="varieties">
-        Furniture
-       </div>
-     </div>
+      {/* Display Filtered Products */}
+      <div className="products-container">
+        {data_product
+          .filter(product => product.category === cat)
+          .map(product => (
+            <div key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
+            <CardProduct key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
+            </div>
+          ))
+        }
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

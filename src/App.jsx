@@ -11,6 +11,7 @@ import Order from './Pages/Order'
 import Profile from './Pages/Profile'
 import Auth from './Pages/LoginSignUp'
 import CreateCampaign from './Pages/CreateCampaign'
+import ProductDetails from './Pages/ProductDetails'
 
 
 
@@ -25,6 +26,7 @@ function App() {
 
         <Route path='/' element={<Home/>} />
         <Route path='/products' element={<Products/>} />
+        <Route path='/product/:id' element={<ProductDetails />} />
         <Route path= '/campaigns' element={<Campaigns/>}/>
         <Route path='/order' element={<Order/>} />
         <Route path='/profile' element={<Profile/>}/>
