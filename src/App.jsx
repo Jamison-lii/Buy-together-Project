@@ -12,6 +12,7 @@ import Profile from './Pages/Profile'
 import Auth from './Pages/LoginSignUp'
 import CreateCampaign from './Pages/CreateCampaign'
 import ProductDetails from './Pages/ProductDetails'
+import CampaignDetails from './Pages/CampaignDetails'
 
 
 
@@ -25,6 +26,7 @@ function App() {
       <Routes>
 
         <Route path='/' element={<Home/>} />
+        <Route path='/campaign/:id' element={<CampaignDetails/>}/>
         <Route path='/products' element={<Products/>} />
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path= '/campaigns' element={<Campaigns/>}/>

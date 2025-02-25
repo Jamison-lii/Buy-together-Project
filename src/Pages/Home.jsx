@@ -3,6 +3,7 @@ import './Styles/Home.css'
 import { Link } from 'react-router-dom'
 import all_product from '../Components/1RenderingAssets/all_product'
 import Card from '../Components/Cards/Card'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
    return (
@@ -27,7 +28,9 @@ const Home = () => {
      <div>
       <div className="card1">
       {all_product.map((product) =>{
+              <div key={product.id} onClick={() => navigate(`/:${product.id}`)}>
              return <Card key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
+             </div>
          })}
       </div>
       <div className="card2"></div>
