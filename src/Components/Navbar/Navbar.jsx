@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className='navbar'>
         <div className='mt-4 ml-5 font-bold text-xl flex '>
           <img className="logo" src={logo} alt="logo" />
-          <p className='logo-text'>GroupBuy</p>
+          <p className='logo-text'>Co-Cart</p>
         </div>
       <div className="navlinks-section">
         <div className='menu'>

@@ -5,7 +5,7 @@ import all_product from '../Components/1RenderingAssets/all_product'
 import Card from '../Components/Cards/Card'
 
 const Home = () => {
-  return (
+   return (
     <div>
      
       <div className="openMessage">
