@@ -11,7 +11,8 @@ const Categories = () => {
 
   const navigate = useNavigate();
 
-  const { searchResults } = useSearch();
+  const { searchResults ,setSearchResults} = useSearch();
+  const { setProd } = useSearch();
 
   return (
     <div>
@@ -19,10 +20,10 @@ const Categories = () => {
         <div className="categories">
           <div onClick={() => setCat("Shoes")} className="varieties1">Shoes</div>
           
-          <div onClick={() => setCat("Clothes")} className="varieties">Clothes</div>
-          <div onClick={() => setCat("Phones")} className="varieties">Phones</div>
-          <div onClick={() => setCat("Accessories")} className="varieties4">Accessories</div>
-          <div onClick={() => setCat("Furniture")} className="varieties">Furniture</div>
+          <div onClick={() => { setSearchResults([]); setCat("Clothes")}} className="varieties">Clothes</div>
+          <div onClick={() => { setSearchResults([]);setCat("Phones")}} className="varieties">Phones</div>
+          <div onClick={() =>{ setSearchResults([]); setCat("Accessories")}} className="varieties4">Accessories</div>
+          <div onClick={() =>{ setSearchResults([]); setCat("Furniture")}} className="varieties">Furniture</div>
         </div>
       </div>
 
@@ -34,7 +35,12 @@ const Categories = () => {
 
       {searchResults.length > 0 ? (
         searchResults.map(product => (
+          
+          <div  key={product.id} onClick={() =>{  setProd(product); navigate(`/product/${product.id}`)}}>
           <CardProduct key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
+         
+          </div>
+          
         ))
       ) : (
         
@@ -42,8 +48,10 @@ const Categories = () => {
        {data_product
          .filter(product => product.category === cat)
          .map(product => (
-           <div key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
+        
+          <div key={product.id} onClick={() =>{   setProd(product); navigate(`/product/${product.id}`)}}>
            <CardProduct key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
+           
            </div>
          ))
        }

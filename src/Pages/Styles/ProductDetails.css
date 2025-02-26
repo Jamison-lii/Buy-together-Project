@@ -1,0 +1,65 @@
+.createCampaignBtn {
+    background: black;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    margin-left: 25%;
+    margin-bottom: 50px;
+  }
+  
+  .createCampaignBtn::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.6s ease-in-out;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  
+  .createCampaignBtn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .createCampaignBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.5);
+    background: rgb(20, 20, 20);
+  }
+  
+  .createCampaignBtn:active {
+    transform: translateY(0);
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .createCampaignBtn {
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .createCampaignBtn {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  

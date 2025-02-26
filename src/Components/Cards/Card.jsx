@@ -7,7 +7,7 @@ import prod_img2 from '../Assets/product_15.png'
 const Card = (prop) => {
   return (
     <div>
-        <div className="cardContainer">
+        <div key={prop.id} className="cardContainer">
             <img src={prop.image} alt="Product" />
             <h3>Group Name</h3>
             

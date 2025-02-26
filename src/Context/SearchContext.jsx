@@ -6,9 +6,11 @@ const SearchContext = createContext();
 // Create a provider component
 export const SearchProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
+  const [prod , setProd] = useState([]);
+
 
   return (
-    <SearchContext.Provider value={{ searchResults, setSearchResults }}>
+    <SearchContext.Provider value={{ searchResults, setSearchResults ,prod, setProd }}>
       {children}
     </SearchContext.Provider>
   );
