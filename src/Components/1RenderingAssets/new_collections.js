@@ -14,6 +14,14 @@ let new_collections = [
     image: p1_img,
     new_price: 50.0,
     old_price: 80.5,
+    category:"Clothes",
+    discount: 10,
+    criteria: 10,
+    maxNumOfParticipants:10,
+    presentNumOfParticipants:0,
+    deadline: "2025-03-03",
+    creator:""
+    
   },
   {
     id: 35,
@@ -21,6 +29,13 @@ let new_collections = [
     image: p2_img,
     new_price: 85.0,
     old_price: 120.5,
+    category:"Clothes",
+    discount: 10,
+    criteria: 10,
+    maxNumOfParticipants:10,
+    presentNumOfParticipants: 0 ,
+    deadline: "2025-03-03",
+    creator:""
   },
   {
     id: 14,
@@ -28,6 +43,13 @@ let new_collections = [
     image: p3_img,
     new_price: 60.0,
     old_price: 100.5,
+    category:"Clothes",
+    discount: 10,
+    criteria: 10,
+    maxNumOfParticipants:10,
+    presentNumOfParticipants: 0 ,
+    deadline: "2025-03-03",
+    creator:""
   },
   {
     id: 8,
@@ -35,6 +57,13 @@ let new_collections = [
     image: p4_img,
     new_price: 100.0,
     old_price: 150.0,
+    category:"Clothes",
+    discount: 10,
+    criteria: 10,
+    maxNumOfParticipants:10,
+    presentNumOfParticipants: 0 ,
+    deadline: "2025-03-03",
+    creator:""
   },
   {
     id: 15,
@@ -42,6 +71,13 @@ let new_collections = [
     image: p5_img,
     new_price: 50.0,
     old_price: 80.5,
+    category:"Clothes",
+    discount: 10,
+    criteria: 10,
+    maxNumOfParticipants:10,
+    presentNumOfParticipants: 0 ,
+    deadline: "2025-03-03",
+    creator:""
   },
   {
     id: 2,
@@ -49,6 +85,13 @@ let new_collections = [
     image: p6_img,
     new_price: 85.0,
     old_price: 120.5,
+    category:"Clothes",
+    discount: 10,
+    criteria: 10,
+    maxNumOfParticipants:10,
+    presentNumOfParticipants: 0 ,
+    deadline: "2025-03-03",
+    creator:""
   },
   {
     id: 17,
@@ -56,6 +99,13 @@ let new_collections = [
     image: p7_img,
     new_price: 60.0,
     old_price: 100.5,
+    category:"Clothes",
+    discount: 10,
+    criteria: 10,
+    maxNumOfParticipants:10,
+    presentNumOfParticipants: 0 ,
+    deadline: "2025-03-03",
+    creator:""
   },
   {
     id: 28,
@@ -63,6 +113,13 @@ let new_collections = [
     image: p8_img,
     new_price: 100.0,
     old_price: 150.0,
+    category:"Clothes",
+    discount: 10,
+    criteria: 10,
+    maxNumOfParticipants:10,
+    presentNumOfParticipants: 0 ,
+    deadline: "2025-03-03",
+    creator:""
   },
 ];
 

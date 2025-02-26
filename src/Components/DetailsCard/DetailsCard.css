@@ -150,4 +150,11 @@
       font-size: 0.9rem;
     }
   }
+
+  @media (min-width: 600px){
+    .details_{
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+  }
   

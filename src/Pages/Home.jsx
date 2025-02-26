@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import all_product from '../Components/1RenderingAssets/all_product'
 import Card from '../Components/Cards/Card'
 import { useNavigate } from 'react-router-dom'
+import new_collections from '../Components/1RenderingAssets/new_collections'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ const Home = () => {
       </div>
      <div>
       <div className="card1">
-      {all_product.map((p) =>{
+      {new_collections.map((p) =>{
         return      <div key={p.id} onClick={() => navigate(`/campaign/${p.id}`)}>
                <Card key={p.id} image={p.image} name={p.name} new_price={p.new_price} />
              </div>
