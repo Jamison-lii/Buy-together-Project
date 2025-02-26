@@ -1,10 +1,34 @@
 import React, { useState } from 'react'
 import './Search.css'
 import search_icon from '../Assets/search_icon.png'
+import all_product from '../1RenderingAssets/all_product'
+import CardProduct from '../ProductCard/CardProduct'
+import { useNavigate } from 'react-router-dom'
+import { useSearch } from "../../Context/SearchContext"; 
 
-const Search = (prop) => {
+const Search = () => {
+
+  const { setSearchResults } = useSearch(); 
+
+  const navigate = useNavigate();
     
   const [query, setQuery] = useState('');
+
+
+  function handleSearch() {
+    if (query.trim() === '') {
+      alert('Please enter a search term');
+      return;
+    }
+    else{
+  
+      const results = all_product.filter(product =>
+        product.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setSearchResults(results); 
+    }
+    
+  }
   
 
   function handleKeyDown(event) {
@@ -14,21 +38,13 @@ const Search = (prop) => {
     }
   }
 
-  function handleSearch(){
-    if (query.trim() === '') return;
-    alert('Search Functionality Coming Soon!')
-    // Add your search functionality here, for example, using fetch API to fetch data from an API or a backend server. 
-    
-    // Example: fetch('https://api.example.com/products?search=' + encodeURIComponent(event.target.value))
-    //.then(response => response.json())
-    //.then(data => console.log(data))
-   .catch(error => console.error('Error:', error))
-  }
+ 
+  
 
   return (
     <div className='search-container'>
         
-       <input className='search-input' type="search" placeholder={prop.placeholder}  value={query} 
+       <input className='search-input' type="search" placeholder="Search"  value={query} 
         onChange={(e) => setQuery(e.target.value)} onKeyDown={handleKeyDown}/>
        <img className='search-icon' src={search_icon} alt="" onClick={handleSearch}/>
 

@@ -13,6 +13,7 @@ import Auth from './Pages/LoginSignUp'
 import CreateCampaign from './Pages/CreateCampaign'
 import ProductDetails from './Pages/ProductDetails'
 import CampaignDetails from './Pages/CampaignDetails'
+import { SearchProvider } from './Context/SearchContext.jsx'
 
 
 
@@ -23,11 +24,15 @@ function App() {
     <>
     <BrowserRouter>
       <Navbar/>
+
+      <SearchProvider>
       <Routes>
 
         <Route path='/' element={<Home/>} />
+        
        
         <Route path='/products' element={<Products/>} />
+        
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path= '/campaigns' element={<Campaigns/>}/>
         <Route path='/campaign/:id' element={<CampaignDetails/>}/>
@@ -38,6 +43,8 @@ function App() {
         
         
       </Routes>
+
+      </SearchProvider>
       </BrowserRouter>
     </>
   )
