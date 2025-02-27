@@ -1,6 +1,14 @@
 import React, { useState } from "react";
+import { useSearch } from "../Context/SearchContext";
+import { useNavigate } from "react-router-dom";
 
 const CreateCampaign = () => {
+
+  const navigate = useNavigate();
+
+  const { selectedProd } = useSearch();
+
+
   const [formData, setFormData] = useState({
     campaignName: "",
     targetPeople: "",
@@ -106,8 +114,8 @@ const CreateCampaign = () => {
           ))}
         </select>
             */}
-           <p style={styles.productText}>Selected Product: <strong>{formData.product || "None"}</strong></p>
-          <button type="button" style={styles.productButton}>Select Product</button>
+           <p style={styles.productText}>Selected Product:{selectedProd.name} <strong>{formData.product || "None"}</strong></p>
+          <button onClick={()=> {navigate('/createCampaign/selectProduct')}} type="button" style={styles.productButton}>Select Product</button>
 
         
         <button type="submit" style={styles.button}>Create Campaign</button>
