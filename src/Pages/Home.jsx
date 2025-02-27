@@ -5,8 +5,10 @@ import all_product from '../Components/1RenderingAssets/all_product'
 import Card from '../Components/Cards/Card'
 import { useNavigate } from 'react-router-dom'
 import new_collections from '../Components/1RenderingAssets/new_collections'
+import { useSearch } from '../Context/SearchContext'
 
 const Home = () => {
+  const { setCamp } = useSearch();
   const navigate = useNavigate()
    return (
     <div>
@@ -30,7 +32,7 @@ const Home = () => {
      <div>
       <div className="card1">
       {new_collections.map((p) =>{
-        return      <div key={p.id} onClick={() => navigate(`/campaign/${p.id}`)}>
+        return      <div key={p.id} onClick={() => { setCamp(p); navigate(`/campaign/${p.id}`)}}>
                <Card key={p.id} image={p.image} name={p.name} new_price={p.new_price} />
              </div>
          })}

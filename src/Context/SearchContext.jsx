@@ -7,10 +7,12 @@ const SearchContext = createContext();
 export const SearchProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [prod , setProd] = useState([]);
+  const [camp, setCamp] = useState([]);
+
 
 
   return (
-    <SearchContext.Provider value={{ searchResults, setSearchResults ,prod, setProd }}>
+    <SearchContext.Provider value={{ searchResults, setSearchResults ,prod, setProd, camp, setCamp }}>
       {children}
     </SearchContext.Provider>
   );

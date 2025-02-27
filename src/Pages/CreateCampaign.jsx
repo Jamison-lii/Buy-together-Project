@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 
-
-
-const createCampaign = () => {
+const CreateCampaign = () => {
   const [formData, setFormData] = useState({
     campaignName: "",
     targetPeople: "",
     minTargetAmount: "",
     deadline: "",
+    product: "", // New field for product selection
   });
 
   const [message, setMessage] = useState("");
+
+  const products = ["Laptop", "Smartphone", "Tablet", "Headphones", "Camera"];
 
   // Handle Input Change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    console.log(`Updated ${name}:`, value); // Debugging
   };
 
   // Handle Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate Fields
-    if (!formData.campaignName || !formData.targetPeople || !formData.minTargetAmount || !formData.deadline) {
+    if (!formData.campaignName || !formData.targetPeople || !formData.minTargetAmount || !formData.deadline || !formData.product) {
       setMessage("All fields are required!");
       return;
     }
@@ -31,12 +32,13 @@ const createCampaign = () => {
     console.log("Campaign Data Submitted:", formData);
     setMessage("Campaign Created Successfully!");
 
-    // Reset Form (Optional)
+    // Reset Form
     setFormData({
       campaignName: "",
       targetPeople: "",
       minTargetAmount: "",
       deadline: "",
+      product: "",
     });
   };
 
@@ -82,11 +84,32 @@ const createCampaign = () => {
           type="date"
           name="deadline"
           value={formData.deadline}
-          onChange={handleChange}
+          onChange={handleChange}  
           required
-          style={styles.input}
+          placeholder="Date"
+          style={styles.dateInput}  
         />
 
+        {/* New Product Selection Dropdown 
+        <select
+          name="product"
+          value={formData.product}
+          onChange={handleChange}
+          required
+          style={styles.select}
+        >
+          <option value="">Select a Product</option>
+          {products.map((product, index) => (
+            <option key={index} value={product}>
+              {product}
+            </option>
+          ))}
+        </select>
+            */}
+           <p style={styles.productText}>Selected Product: <strong>{formData.product || "None"}</strong></p>
+          <button type="button" style={styles.productButton}>Select Product</button>
+
+        
         <button type="submit" style={styles.button}>Create Campaign</button>
       </form>
     </div>
@@ -98,6 +121,19 @@ const styles = {
       fontSize: "24px",
       fontWeight: "600",
       color: "black",
+    },
+    productText:{
+      color: "black",
+    },
+    productButton:{
+      padding: "8px 12px", 
+      background: "black", 
+      color: "white", 
+      border: "none", 
+      borderRadius: "5px", 
+      cursor: "pointer",
+      width: "70%",
+      marginLeft: "45px",
     },
     container: {
       maxWidth: "400px",
@@ -121,7 +157,24 @@ const styles = {
       backgroundColor: "transparent",
       color: "#fff",
     },
+    dateInput: {
+      padding: "10px",
+      borderRadius: "5px",
+      border: "1px solid #444",
+      fontSize: "16px",
+      backgroundColor: "#fff",
+      color: "#000",
+    },
+    select: {
+      padding: "10px",
+      borderRadius: "5px",
+      border: "1px solid #444",
+      fontSize: "16px",
+      backgroundColor: "transparent",
+      color: "#fff",
+    },
     button: {
+      marginTop: "30px",
       padding: "10px",
       background: "black",
       color: "white",
@@ -135,5 +188,4 @@ const styles = {
     },
   };
 
-
-export default createCampaign;
+export default CreateCampaign;

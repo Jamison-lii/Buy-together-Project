@@ -14,6 +14,8 @@ import CreateCampaign from './Pages/CreateCampaign'
 import ProductDetails from './Pages/ProductDetails'
 import CampaignDetails from './Pages/CampaignDetails'
 import { SearchProvider } from './Context/SearchContext.jsx'
+import CampaignModalities from './Pages/CampaigModalities.jsx'
+import SelectProducts from './Pages/SelectProducts.jsx'
 
 
 
@@ -36,10 +38,13 @@ function App() {
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path= '/campaigns' element={<Campaigns/>}/>
         <Route path='/campaign/:id' element={<CampaignDetails/>}/>
+        <Route path='/campaign/:id/modalities' element={<CampaignModalities/>}/>
         <Route path='/order' element={<Order/>} />
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/auth' element={<Auth/>}/>
         <Route path='/createCampaign' element={<CreateCampaign/>}/>
+        <Route path='/createCampaign/selectProduct' element={<SelectProducts/>}/>
+        
         
         
       </Routes>

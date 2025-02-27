@@ -14,7 +14,11 @@ const DetailsCard = (prop) => {
     {  (prop.deadline)?
 
     <div>
-        
+        <p className='p5'>Maximum number of Participants: {prop.maxNumOfParticipants}</p>
+        <p className='p6'>Maximum number of Participants: {prop.presentNumOfParticipants}</p>
+        <p className='p7'>Maximum number of Participants: {prop.maxNumOfParticipants}</p>
+        <p className='p8'>Campaign Ends: {prop.deadline}</p>
+        <p className='p9'>Creator: {prop.creator}</p>
     </div>
     :
     
