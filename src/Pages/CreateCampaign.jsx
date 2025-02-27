@@ -1,31 +1,35 @@
-import React, { useState } from "react";
-import { useSearch } from "../Context/SearchContext";
+import React, { useState, useEffect } from "react";
+import { useSearch } from "../Context/SearchContext"; // 🔹 Get selected product
 import { useNavigate } from "react-router-dom";
 
 const CreateCampaign = () => {
-
   const navigate = useNavigate();
-
-  const { selectedProd } = useSearch();
-
+  const { selectedProd } = useSearch(); // 🔹 Get selected product from context
 
   const [formData, setFormData] = useState({
     campaignName: "",
     targetPeople: "",
     minTargetAmount: "",
     deadline: "",
-    product: "", // New field for product selection
+    product: null, // 🔹 Initialize product as null
   });
 
   const [message, setMessage] = useState("");
 
-  const products = ["Laptop", "Smartphone", "Tablet", "Headphones", "Camera"];
+  // ✅ Use Effect to update formData when a product is selected
+  useEffect(() => {
+    if (selectedProd) {
+      setFormData((prev) => ({
+        ...prev,
+        product: selectedProd, // ✅ Update formData with selected product
+      }));
+    }
+  }, [selectedProd]);
 
   // Handle Input Change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    console.log(`Updated ${name}:`, value); // Debugging
   };
 
   // Handle Form Submission
@@ -46,16 +50,13 @@ const CreateCampaign = () => {
       targetPeople: "",
       minTargetAmount: "",
       deadline: "",
-      product: "",
+      product: null,
     });
   };
 
   return (
     <div style={styles.container}> 
-        <div className="title" style={styles.title}>
-            Campaign Creation
-        </div>
-      <h2>Start a Group Buying Campaign</h2>
+      <h2>Create a Group Buying Campaign</h2>
       {message && <p style={styles.message}>{message}</p>}
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
@@ -94,30 +95,15 @@ const CreateCampaign = () => {
           value={formData.deadline}
           onChange={handleChange}  
           required
-          placeholder="Date"
           style={styles.dateInput}  
         />
 
-        {/* New Product Selection Dropdown 
-        <select
-          name="product"
-          value={formData.product}
-          onChange={handleChange}
-          required
-          style={styles.select}
-        >
-          <option value="">Select a Product</option>
-          {products.map((product, index) => (
-            <option key={index} value={product}>
-              {product}
-            </option>
-          ))}
-        </select>
-            */}
-           <p style={styles.productText}>Selected Product:{selectedProd.name} <strong>{formData.product || "None"}</strong></p>
-          <button onClick={()=> {navigate('/createCampaign/selectProduct')}} type="button" style={styles.productButton}>Select Product</button>
+        {/* ✅ Display Selected Product */}
+        <div style={styles.productContainer}>
+          <p style={styles.productText}>Selected Product: <strong>{formData.product ? formData.product.name : "None"}</strong></p>
+          <button onClick={() => navigate('/createCampaign/selectProduct')} type="button" style={styles.productButton}>Select Product</button>
+        </div>
 
-        
         <button type="submit" style={styles.button}>Create Campaign</button>
       </form>
     </div>
@@ -125,75 +111,15 @@ const CreateCampaign = () => {
 };
 
 const styles = {
-    title:{
-      fontSize: "24px",
-      fontWeight: "600",
-      color: "black",
-    },
-    productText:{
-      color: "black",
-    },
-    productButton:{
-      padding: "8px 12px", 
-      background: "black", 
-      color: "white", 
-      border: "none", 
-      borderRadius: "5px", 
-      cursor: "pointer",
-      width: "70%",
-      marginLeft: "45px",
-    },
-    container: {
-      maxWidth: "400px",
-      margin: "auto",
-      padding: "20px",
-      background: "transparent",
-      borderRadius: "8px",
-      color: "#fff",
-      textAlign: "center",
-    },
-    form: {
-      display: "flex",
-      flexDirection: "column",
-      gap: "10px",
-    },
-    input: {
-      padding: "10px",
-      borderRadius: "5px",
-      border: "1px solid #444",
-      fontSize: "16px",
-      backgroundColor: "transparent",
-      color: "#fff",
-    },
-    dateInput: {
-      padding: "10px",
-      borderRadius: "5px",
-      border: "1px solid #444",
-      fontSize: "16px",
-      backgroundColor: "#fff",
-      color: "#000",
-    },
-    select: {
-      padding: "10px",
-      borderRadius: "5px",
-      border: "1px solid #444",
-      fontSize: "16px",
-      backgroundColor: "transparent",
-      color: "#fff",
-    },
-    button: {
-      marginTop: "30px",
-      padding: "10px",
-      background: "black",
-      color: "white",
-      border: "none",
-      borderRadius: "5px",
-      cursor: "pointer",
-      fontSize: "16px",
-    },
-    message: {
-      color: "lightgreen",
-    },
-  };
+  container: { maxWidth: "400px", margin: "auto", padding: "20px", textAlign: "center" },
+  form: { display: "flex", flexDirection: "column", gap: "10px" },
+  input: { padding: "10px", borderRadius: "5px", border: "1px solid #444", fontSize: "16px" },
+  dateInput: { padding: "10px", borderRadius: "5px", border: "1px solid #444", fontSize: "16px", backgroundColor: "#fff", color: "#000" },
+  productContainer: { marginTop: "15px", textAlign: "center" },
+  productText: { fontSize: "16px", fontWeight: "bold" },
+  productButton: { padding: "8px 12px", background: "black", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" },
+  button: { marginTop: "20px", padding: "10px", background: "black", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" },
+  message: { color: "lightgreen" },
+};
 
 export default CreateCampaign;
