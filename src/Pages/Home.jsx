@@ -6,13 +6,15 @@ import Card from '../Components/Cards/Card'
 import { useNavigate } from 'react-router-dom'
 import new_collections from '../Components/1RenderingAssets/new_collections'
 import { useSearch } from '../Context/SearchContext'
+import  hero_image from '../Components/1RenderingAssets/hero_image.png'
 
 const Home = () => {
   const { setCamp } = useSearch();
   const navigate = useNavigate()
    return (
     <div>
-     
+     <div className='contforleftpart'> 
+      <div>
       <div className="openMessage">
         Join Group Buying Campaigns  -Buy More Pay less
        
@@ -24,12 +26,19 @@ const Home = () => {
      <div className='Trial'> 
       <Link style={{textDecoration: 'none'}} to='/createCampaign'> <button className='seeCampaigns-btn'>Create Campaigns</button> </Link>
       </div>
+      </div>
+      <div className="heroimage">
+        <img src={hero_image} alt="" />
+      </div>
+       
+      </div>
 
+     
       <div className="top">
-        <p>Top</p>
+        <p>Some ongoing campaigns below :</p>
     {/*<hr />*/ }    
       </div>
-     <div>
+     <div className="cardRenderSection">
       <div className="card1">
       {new_collections.map((p) =>{
         return      <div key={p.id} onClick={() => { setCamp(p); navigate(`/campaign/${p.id}`)}}>

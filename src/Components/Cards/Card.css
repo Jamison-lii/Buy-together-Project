@@ -12,7 +12,8 @@
     height: 300px;
     width: 100%;
     margin-bottom:5px;
-    border-radius: 5px;;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .cardContainer h3{

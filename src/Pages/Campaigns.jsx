@@ -11,7 +11,8 @@ const Campaigns = () => {
      
 
   return (
-    <div>
+    <div >
+      <div className="all ">
       <p className="heading1">
         Campaigns
       </p>
@@ -29,6 +30,13 @@ const Campaigns = () => {
          {menu ==='ForYou' ? <hr/> : <></>}
          
         </div>
+
+        <div className="foryou"  onClick={()=> {setMenu('InProcess')}}>
+          In Process
+         {menu ==='InProcess' ? <hr/> : <></>}
+         
+        </div>
+
         <div className="campaigns" onClick={()=> {setMenu('MyCampaigns')}} >
           MyCampaigns
           {menu ==='MyCampaigns' ? <hr/> : <></>}
@@ -36,19 +44,24 @@ const Campaigns = () => {
       </div>
 
       {menu ==='ForYou' ? 
-      <div>
+      <div className='cards-container'>
          {all_product.map((product) =>{
              return <Card key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
          })}
       </div>:
 
-         <>
+         <div className='cards-container'>
             {new_collections.map((product) =>{
              return <Card key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
          })}
-         </>
+        </div>
 
          }
+
+         {
+          menu=='InProcess' ? <div></div>:<></>
+         }
+      </div>
       </div>  
     </div>
   )

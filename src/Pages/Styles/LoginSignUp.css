@@ -1,95 +1,162 @@
+/* General Styling */
 .auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #ffffff;
-    color: black
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   
+  color: black;
+  padding: 20px;
+}
+
+.auth-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Heading */
+h2 {
+  color: black;
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+/* Input Group */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+}
+
+/* Button */
+.auth-btn {
+  background: black;
+  color: white;
+  padding: 12px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s ease;
+}
+
+.auth-btn:hover {
+  background: #0056b3;
+}
+
+/* Toggle Link */
+.toggle-text {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #666;
+}
+
+.toggle-link {
+  color: #007bff;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.toggle-link:hover {
+  color: #0056b3;
+}
+
+/* Responsive Design */
+
+/* 🌟 Devices Up to 600px (Smaller Screens) */
+@media (max-width: 599px) {
   .auth-box {
-    background: #ffffff;
+    width: 95%;
     padding: 20px;
-    border-radius: 10px;
-    width: 350px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    margin-top:-50px;
   }
-  
+
   h2 {
-    color: white;
+    font-size: 28px;
   }
-  
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
+
   .input-group label {
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(0, 0, 0);
-    margin-bottom: 5px;
+    font-size: 18px;
   }
-  
+
   .input-group input {
-    padding: 10px;
-    font-size: 14px;
-    border: 2px solid #444;
-    background: #444;
-    color: white;
-    border-radius: 6px;
-    outline: none;
+    font-size: 18px;
+    padding: 14px;
   }
-  
-  .input-group input:focus {
-    border-color: #007bff;
-  }
-  
+
   .auth-btn {
-    background: #000000;
-    color: white;
-    padding: 10px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s ease;
+    font-size: 20px;
+    padding: 14px;
   }
-  
-  .auth-btn:hover {
-    background: #0056b3;
-  }
-  
+
   .toggle-text {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #bbb;
+    font-size: 16px;
   }
-  
-  .toggle-link {
-    color: #007bff;
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: underline;
+}
+
+@media (min-width: 599px){
+     .auth-container{
+      margin-right: -500px;
+     }
+}
+
+/* 🌟 Devices Around 1025px (Larger Screens) */
+@media (min-width: 1025px) {
+  .auth-container{
+    margin-right: -750px;
   }
-  
-  .toggle-link:hover {
-    color: #0056b3;
+  .auth-box {
+    width: 450px;
+    padding: 30px;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 400px) {
-    .auth-box {
-      width: 90%;
-      padding: 15px;
-    }
-  
-    .auth-btn {
-      width: 100%;
-    }
+
+  h2 {
+    font-size: 32px;
   }
-  
+
+  .input-group label {
+    font-size: 18px;
+  }
+
+  .input-group input {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .auth-btn {
+    font-size: 20px;
+    padding: 14px;
+  }
+
+  .toggle-text {
+    font-size: 16px;
+  }
+}

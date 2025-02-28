@@ -1,78 +1,90 @@
-.categories-container{
-    margin-left: 5px;
+/* Ensure full width & responsiveness */
+.categories-container {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    overflow-x: auto; /* Enables horizontal scrolling if needed */
 }
 
-
+/* Category Wrapper */
 .categories {
     display: flex;
-   /* flex-wrap: wrap; /* Ensures items move to new lines if needed */
-    gap: 10px;
+    flex-wrap: nowrap; /* Prevents wrapping to new lines */
+    gap: 12px;
+    justify-content: center;
     align-items: center;
-    justify-content: center; /* Centers items */
-    width: 100%; /* Allow full width */
-    max-width: 100%; /* Prevents forcing scrolling */
-   
-    /*overflow: hidden;*/
+    max-width: 100%;
+    overflow-x: auto; /* Enables horizontal scrolling on small screens */
+    padding-bottom: 10px; /* Extra spacing for scroll */
 }
 
-.varieties, .varieties1 {
-    min-width: 120px;
-    padding: 4px 4px;
-    background: #252525;
-    color: white;
-    text-align: center;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: 0.3s;
-    height: 35px;
-}
-
+/* Category Buttons */
 .varieties, .varieties1, .varieties4 {
     min-width: 120px;
-    padding: 4px 4px;
+    padding: 8px 12px;
     background: #252525;
     color: white;
     text-align: center;
-    border-radius: 2px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s;
-    height: 35px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    height: 40px;
+    font-size: clamp(14px, 1.2vw, 18px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    white-space: nowrap; /* Prevents text from breaking */
 }
 
-.varieties:hover, .varieties1:hover {
+/* Hover & Active Effects */
+.varieties:hover, .varieties1:hover, .varieties4:hover {
     background: #3a3a3a;
+    transform: scale(1.05);
 }
 
-
-@media (min-width: 599px){
-    .categories-container{
-        margin-left: 25%;
+/* MOBILE VIEW */
+@media (max-width: 599px) {
+    .categories {
+        overflow-x: auto; /* Enables horizontal scrolling on small screens */
+        justify-content: flex-start; /* Aligns items to the left */
+        padding: 5px 10px;
+        scrollbar-width: none; /* Hide scrollbar for cleaner look */
     }
 
-   /* .varieties {
-     padding-top: 50px;
-    }*/
-}
-
-@media (min-width: 600px) and (max-width:675px){
-    .categories-container{
-        margin-left: 20%;
+    .categories::-webkit-scrollbar {
+        display: none; /* Hides scrollbar for Webkit browsers */
     }
 
-    .varieties1{
-        margin-left: -20px;
-    }
-    .varieties4{
-        margin-right: 50px;
+    .varieties, .varieties1, .varieties4 {
+        flex: 0 0 auto; /* Prevents shrinking */
+        min-width: 110px; /* Ensures proper sizing */
     }
 }
 
-@media (min-width: 1130px){
-    .varieties1{
-        margin-left: 0%;
+/* TABLET VIEW */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .categories {
+        gap: 15px;
     }
-   .categories{
-    margin-left: 70px;
-   }
+
+    .varieties, .varieties1, .varieties4 {
+        padding: 10px 16px;
+        height: 45px;
+        font-size: 16px;
+    }
+}
+
+/* DESKTOP VIEW */
+@media (min-width: 1025px) {
+    .categories {
+        max-width: 70%;
+    }
+
+    .varieties, .varieties1, .varieties4 {
+        min-width: 130px;
+        height: 50px;
+        font-size: 18px;
+    }
 }

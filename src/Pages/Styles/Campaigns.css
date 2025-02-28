@@ -1,143 +1,142 @@
-*{
-    font-family: Poppins;
+* {
+    font-family: Poppins, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.containerforSearch{
+/* Main Container */
+.containerforSearch {
     margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-.heading1{
-    margin-top: 15px;
-    margin-left: 27%;
-    font-size: 30px;
-    font-weight: 600
+/* Heading */
+.heading1 {
+    text-align: center;
+    font-size: clamp(28px, 5vw, 50px);
+    font-weight: 600;
+    margin-top: 20px;
 }
 
-.openText{
-    margin-left: 15px;
-    margin-top:10px;
-   
+/* Promotional Text */
+.openText {
+    text-align: center;
+    margin-top: 10px;
     color: #131313;
     font-weight: 400;
     line-height: 40px;
 }
 
-.openText1{
-    font-size: 30px;
-    margin-left: 20px;
-}
-.openText2{
-    font-size: 30px;
-    margin-bottom: 30px;
-    margin-left: 20px
+.openText1, .openText2 {
+    font-size: clamp(20px, 4vw, 30px);
+    font-weight: 500;
 }
 
-.sections{
+/* Section Navigation */
+.sections {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    font-weight: 500;
+    font-size: clamp(16px, 3vw, 22px);
     margin-top: 35px;
-    margin-left: 30%;
-   display: flex;
-   gap: 70px;
-   font-family: Poppins;
-   font-weight: 500;
-   padding-top: 20px;
-   font-size: 20px;
+    padding-top: 10px;
+    cursor: pointer;
 }
 
-.foryou{
+.foryou, .campaigns {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-left: 8%;
 }
 
-.foryou hr{
+.foryou hr, .campaigns hr {
     width: 70%;
     border: 1.5px solid #252525;
 }
 
-.campaigns{
-    display: flex;
-    flex-direction: column;
+/* Cards Container - Horizontal Layout */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 20px;
     justify-content: center;
-    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
 }
 
-.campaigns hr{
-    width: 70%;
-    border: 1.5px solid #252525;
+/* Individual Card Styling */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
 }
 
+.card:hover {
+    transform: scale(1.05);
+}
 
+/* Media Queries for Responsive Adjustments */
+@media (max-width: 600px) {
+    .sections {
+        gap: 30px;
+        font-size: 18px;
+    }
 
-@media (min-width: 500px){
-    .heading1{
-        font-size: 40px;
-        margin-left: 34%;
+    .openText{
+        line-height: 30px;
+        margin-bottom: 30px
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusts for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .sections {
+        font-size: 16px;
+        gap: 20px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller cards on mobile */
+    }
+}
+
+@media (min-width: 599px){
+    .all{
+        margin-right: -400px;
     }
     .openText{
-        display: flex;
-       flex-direction: column;
-        margin-left: 10%;
-        font-size: 40px;
-        justify-content: center;
-        align-items: center;
+        line-height: 30px;
+        margin-bottom: 30px
     }
-    .openText1{
-       width: 100%;
-        margin-left: 40%
-    }
-    .openText2{
-        margin-left: -5%
-    }
-    .sections{
-        
-        font-size: 25px;
-    }
-    .foryou{
-       
-        margin-left: 20%;
+     .sections{
+        margin-right: 40px;
+     }
+     .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Larger cards on desktops */
     }
 }
 
-@media (min-width: 599px) {
-    .heading1{
-        font-size: 50px;
-        margin-left: 54%;
-    }
+@media (min-width: 1025px){
     .openText{
-        display: flex;
-       flex-direction: column;
-        margin-left: 30%;
-      
-        
-        justify-content: center;
-        align-items: center;
+        line-height: 30px;
+        margin-bottom: 30px
     }
-    .openText1{
-       width: 100%;
-        margin-left: 30%;
-        font-size: 40px;
-        
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Larger cards on desktops */
     }
-    .openText2{
-        margin-left: 20%;
-        font-size: 40px;
+    .all{
+        margin-right: -850px;
     }
-
-    .containerforSearch{
-        margin-left: 30%
-    }
-    .sections{
-        
-        font-size: 35px;
-        gap: 60px;
-    }
-    .foryou{
-      
-        margin-left: 10%;
-    }
-    .campaigns{
-        margin-left: 40px
-    }
+    
 }

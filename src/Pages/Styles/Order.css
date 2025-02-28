@@ -10,7 +10,7 @@
    margin-bottom: 10px;
 }
 
-.OpenText{
+.OpenText_{
     font-size: 24px;
     font-weight: 400;
 }
@@ -67,3 +67,53 @@
     width: 70%;
     border: 1.5px solid #252525;
 }
+
+@media (min-width: 599px){
+   .order{
+    margin-right: -570px
+   }
+   .OpenText_{
+    margin-left: 19%
+   }
+   .sections{
+    font-size: 30px;
+    margin-left: -80px;
+   }
+   .heading{
+      font-size: 45px
+   }
+
+}
+
+@media (min-width: 800px){
+    .order{
+     margin-right: -570px
+
+    }
+    .OpenText_{
+     margin-left: 25%
+    }
+    .sections{
+     font-size: 30px;
+     margin-left: -80px;
+    }
+    .heading{
+       font-size: 45px
+    }
+ 
+ }
+
+ @media (min-width: 1025px){
+    .order{
+        margin-right: -950px
+        
+       }
+    .OpenText_{
+        margin-left: 25%
+   
+    }   
+    .sections{
+        font-size: 30px;
+        margin-left: -16%
+    }
+ }

@@ -9,7 +9,7 @@ const Order = () => {
     <div className='order'>
 
         <p className='heading'>Orders</p>
-       <div className="OpenText">
+       <div className="OpenText_">
          <p>Track and Manage your orders with ease.</p>
         {/* <p>Meet up with deadlines</p>*/}
        </div>
