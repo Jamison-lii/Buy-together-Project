@@ -140,7 +140,7 @@ const Auth = () => {
           <>
             <h2>Welcome, {user.name}!</h2>
             <p>Email: {user.email}</p>
-            <button onClick={()=>{handleLogout}} className="auth-btn">
+            <button onClick={()=>{handleLogout()}} className="auth-btn">
               Logout
             </button>
           </>
