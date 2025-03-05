@@ -4,8 +4,11 @@ import './Styles/Campaigns.css'
 import Card from '../Components/Cards/Card'
 import all_product from '../Components/1RenderingAssets/all_product'
 import new_collections from '../Components/1RenderingAssets/new_collections'
+import { useNavigate } from 'react-router-dom'
 
 const Campaigns = () => {
+
+  const navigate = useNavigate();
 
      const [menu, setMenu] = useState('ForYou')
      
@@ -44,9 +47,9 @@ const Campaigns = () => {
       </div>
 
       {menu ==='ForYou' ? 
-      <div className='cards-container'>
+      <div  className='cards-container'>
          {all_product.map((product) =>{
-             return <Card key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
+             return <div key={product.id} onClick={()=>{navigate(`/campaign/${product.id}`)}}><Card key={product.id} image={product.image} name={product.name} new_price={product.new_price} /> </div>
          })}
       </div>:
 
