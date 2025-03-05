@@ -12,7 +12,7 @@ const Auth = () => {
     phone_number: "",
     profile_pic: null,
   });
-  
+
   const [error, setError] = useState("");
 
   // Handle Input Change
@@ -31,15 +31,15 @@ const Auth = () => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       return "Invalid email format!";
     }
-    
+
     if (!/^6\d{8}$/.test(formData.phone_number)) {
       return "Phone number must start with 6 and be 9 digits long!";
     }
-    
+
     if (!isLogin && formData.password !== formData.password_confirmation) {
       return "Passwords do not match!";
     }
-    
+
     return "";
   };
 
@@ -54,21 +54,27 @@ const Auth = () => {
     setError("");
 
     const formDataToSend = new FormData();
-  /*  Object.entries(formData).forEach(([key, value]) => {
-      formDataToSend.append(key, value);
-    });*/
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("password", formData.password);
-    formDataToSend.append("password_confirmation", formData.password_confirmation);
-    formDataToSend.append("phone_number", formData.phone_number);
-    formDataToSend.append("address", formData.address);
-  //  formDataToSend.append("profile_pic", formData.profile_pic);
 
+  formDataToSend.append("email", formData.email);
+  formDataToSend.append("name", formData.name);
+  formDataToSend.append("password", formData.password);
+  formDataToSend.append("password_confirmation", formData.password_confirmation);
+  formDataToSend.append("phone_number", formData.phone_number);
+  formDataToSend.append("address", formData.address);
+  
+  // Append the profile_pic if available
+  if (formData.profile_pic) {
+    formDataToSend.append("profile_pic", formData.profile_pic);
+  }
 
-    console.log({formData});
+  // Debugging: Log FormData entries
+  for (let [key, value] of formDataToSend.entries()) {
+    console.log(`${key}: ${value}`);
+  }
+
+  //  console.log(formData);
     console.log(isLogin);
-    console.log({formDataToSend});
+    
 
     const url = isLogin
       ? "https://rrn24.techchantier.site/buy-together-api/public/api/login"
@@ -76,16 +82,28 @@ const Auth = () => {
 
     try {
       const response = await fetch(url, {
-        // mode:"no-cors",
         method: "POST",
         body: formDataToSend,
-        header: {
-          Accept: 'application/json',
-          'Content-Type': "application/json"
-        }
+        headers: {
+          Accept: "application/json",
+          // 'Content-Type' is automatically set by FormData, so no need to set it manually
+        },
       });
+
+      // Check if the response is OK
+      if (!response.ok) {
+        const errorResponse = await response.json(); // Log detailed error from server
+        console.log("Server Error:", errorResponse);
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
       const data = await response.json();
       console.log("Response:", data);
+
+      // If the request is successful, show an alert
+      if (response.ok) {
+        alert("Success");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -100,40 +118,81 @@ const Auth = () => {
           {!isLogin && (
             <div className="input-group">
               <label>Name:</label>
-              <input type="text" name="name" value={formData.name} onChange={handleChange} required={!isLogin} />
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required={!isLogin}
+              />
             </div>
           )}
 
           <div className="input-group">
             <label>Email:</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="input-group">
             <label>Password:</label>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           {!isLogin && (
             <>
               <div className="input-group">
                 <label>Confirm Password:</label>
-                <input type="password" name="password_confirmation" value={formData.password_confirmation} onChange={handleChange} required={!isLogin} />
+                <input
+                  type="password"
+                  name="password_confirmation"
+                  value={formData.password_confirmation}
+                  onChange={handleChange}
+                  required={!isLogin}
+                />
               </div>
 
               <div className="input-group">
                 <label>Address:</label>
-                <input type="text" name="address" value={formData.address} onChange={handleChange} required />
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
               <div className="input-group">
                 <label>Phone Number:</label>
-                <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} required maxLength="9" />
+                <input
+                  type="text"
+                  name="phone_number"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                  required
+                  maxLength="9"
+                />
               </div>
 
               <div className="input-group">
                 <label>Profile Picture:</label>
-                <input type="file" onChange={handleFileChange} accept="image/*" />
+                <input
+                  type="file"
+                  onChange={handleFileChange}
+                  accept="image/*"
+                />
               </div>
             </>
           )}
