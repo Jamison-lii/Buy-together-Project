@@ -41,16 +41,16 @@ let all_product = [
     name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
     category: "women",
     image: p1_img,
-    new_price: 50.0,
-    old_price: 80.5,
+    new_price: 50.0, //Unit price format for all
+    old_price: 35.0,//bulk price  format for all
   },
   {
     id: 2,
     name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
     category: "women",
     image: p2_img,
-    new_price: 85.0,
-    old_price: 120.5,
+    new_price: 90.0,
+    old_price: 70.5,
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ let all_product = [
     category: "women",
     image: p3_img,
     new_price: 60.0,
-    old_price: 100.5,
+    old_price: 50.5,
   },
   {
     id: 4,
@@ -66,7 +66,7 @@ let all_product = [
     category: "women",
     image: p4_img,
     new_price: 100.0,
-    old_price: 150.0,
+    old_price: 84.0,
   },
   {
     id: 5,

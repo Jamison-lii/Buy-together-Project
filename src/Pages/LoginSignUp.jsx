@@ -122,12 +122,46 @@ const Auth = () => {
   };
 
   // Handle Logout
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    setUser(null);
-    navigate("/auth"); // Redirect to login page
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token"); // Retrieve token
+  
+    if (!token) {
+      console.error("No token found. Redirecting to login.");
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      setUser(null);
+      navigate("/auth");
+      return;
+    }
+  
+    try {
+      const response = await fetch("https://rrn24.techchantier.site/buy-together-api/public/api/logout", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`, // Send token in headers
+          "Accept": "application/json",
+        },
+      });
+  
+      const data = await response.json();
+      console.log("Logout Response:", data);
+  
+      if (response.ok) {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        setUser(null);
+        alert("Successfully logged out.");
+        navigate("/auth"); // Redirect to login page
+      } else {
+        console.error("Logout failed:", data);
+        alert(data.message || "Logout failed, try again.");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      alert("Something went wrong. Try again.");
+    }
   };
+  
 
   
 
