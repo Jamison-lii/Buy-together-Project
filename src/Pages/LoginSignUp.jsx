@@ -22,16 +22,17 @@ const Auth = () => {
   // Check if user is already logged in on page load
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
-    if (savedUser) {
+  
+    if (savedUser && savedUser !== "undefined" && savedUser !== "null") {
       try {
-        setUser(JSON.parse(savedUser));
-        navigate("/"); // Redirect to Home if already logged in
+        const parsedUser = JSON.parse(savedUser);
+        setUser(parsedUser);
       } catch (error) {
         console.error("Error parsing user from localStorage:", error);
         localStorage.removeItem("user"); // Clear invalid data
       }
     }
-  }, [navigate]);
+  }, []);
 
   // Handle Input Change
   const handleChange = (e) => {
@@ -101,17 +102,16 @@ const Auth = () => {
       const data = await response.json();
       console.log("Response:", data);
 
-      if (response.ok) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("token", data.token);
+      console.log("data:", data.data.user)
+
+      if (response.ok && data.data.user) {
+        localStorage.setItem("user", JSON.stringify(data.data.user)); // Store user safely
+        localStorage.setItem("token", data.data.token);
         setUser(data.user);
-        console.log(data.user);
+        console.log("User logged in:", data.data.user);
         alert("Success");
 
-        
-          navigate("/"); // Redirect to Home Page after login
-         
-       
+        navigate("/"); // Redirect to Home Page after login
       } else {
         setError(data.message || "Login failed");
       }
@@ -126,12 +126,10 @@ const Auth = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser(null);
-    
-      navigate("/auth"); // Redirect to Home Page after login
-  
+    navigate("/auth"); // Redirect to login page
   };
 
-  console.log("User",user)
+  
 
   return (
     <div className="auth-container">
@@ -140,7 +138,7 @@ const Auth = () => {
           <>
             <h2>Welcome, {user.name}!</h2>
             <p>Email: {user.email}</p>
-            <button onClick={()=>{handleLogout()}} className="auth-btn">
+            <button onClick={handleLogout} className="auth-btn">
               Logout
             </button>
           </>
