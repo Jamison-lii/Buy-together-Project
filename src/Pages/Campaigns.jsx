@@ -134,8 +134,9 @@ console.log("This is the username:", user.name);
           {menu == "InProcess" ? <div></div> : <></>}
 
           {menu == "MyCampaigns" ? (
-            <div className="campaign-contain">
+            
             <div className="cards-container">
+             <div className="campaign-contain"> 
               {allCampaigns.map((product) => {
                 return (
                   <div
@@ -153,11 +154,17 @@ console.log("This is the username:", user.name);
                       image={product.product?.image}
                       name={product.title}
                       new_price={product.product?.bulk_price}
-                    /></div>:<></> }
+                    />
+                     <div className="two-buttons ">
+                      <div className="button1 "><p>Pay</p></div>
+                      <div className=" button2"><p>Update</p></div>
+                     </div>
+                    </div>:<></> }
                   </div>
                 );
               })}
-            </div>
+            </div> 
+            
             </div>
           ) : (
             <></>
