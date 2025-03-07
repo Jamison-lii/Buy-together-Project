@@ -83,6 +83,11 @@
     transform: scale(1.05);
 }
 
+.campaign-contain{
+    margin-left: -85%;
+    
+}
+
 /* Media Queries for Responsive Adjustments */
 @media (max-width: 600px) {
     .sections {
@@ -107,7 +112,7 @@
     }
 
     .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller cards on mobile */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller cards on mobile */
     }
 }
 

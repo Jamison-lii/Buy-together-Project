@@ -1,20 +1,82 @@
-import React from 'react'
-import { useSearch } from '../Context/SearchContext'
+import React, { useEffect, useState } from 'react';
+import { useSearch } from '../Context/SearchContext';
 import DetailsCard from '../Components/DetailsCard/DetailsCard';
 import { useNavigate } from 'react-router-dom';
 
 const CampaignDetails = () => {
   const navigate = useNavigate();
-  const {camp} = useSearch();
+  const { camp } = useSearch();
+  const [campaignData, setCampaignData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // Fetch campaign details only if `camp` exists
+  useEffect(() => {
+    if (camp && camp.id) {
+      fetchPurchaseGoalById(camp.id);
+    } else {
+      setLoading(false);
+      setError("No campaign selected.");
+    }
+  }, [camp]);
+
+  const fetchPurchaseGoalById = async (id) => {
+    const url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${id}`;
+
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      console.log(response); 
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Fetched Purchase Goal:", data);
+      setCampaignData(data);
+    } catch (error) {
+      console.error("Error fetching purchase goal:", error);
+      setError("❌ Failed to load campaign details.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <p>Loading campaign details...</p>;
+  if (error) return <p>{error}</p>;
+  if (!campaignData) return <p>No campaign data available.</p>;
+
+   
+
   return (
     <div>
-       <div  className="camp-details-container">
-          <DetailsCard  id={camp.id} image={camp.image} name={camp.name} new_price={camp.new_price} category={camp.category} discount={camp.discount} criteria={camp.criteria} maxNumOfParticipants={camp.maxNumOfParticipants} presentNumOfParticipants={camp.presentNumOfParticipants} deadline={camp.deadline} creator={camp.creator} /> 
-       <button onClick={() =>{  navigate(`/campaign/${camp.id}/modalities`)}}  className='createCampaignBtn'>Join Campaign</button> 
+      <div className="camp-details-container">
+        <DetailsCard
+          id={campaignData.data.id}
+          image={campaignData.data.product?.image}
+          name={campaignData.data.title}
+          new_price={campaignData.data.product?.unit_price}
+          category={campaignData.data.category}
+          discount={campaignData.data.product?.bulk_price}
+          description={campaignData.data.description}
+          maxNumOfParticipants={campaignData.data.maxNumOfParticipants}
+          presentNumOfParticipants={campaignData.data.number_of_participants}
+          deadline={campaignData.data.end_date}
+          creator={campaignData.data.created_by?.name}
+        />
+        <button onClick={() => navigate(`/campaign/${campaignData.id}/modalities`)} className="createCampaignBtn">
+          Join Campaign
+        </button>
+      </div>
+      {console.log("This is camp from the home page:", camp)}
     </div>
-   </div> 
-  )
-}
+  );
+};
 
-export default CampaignDetails
-
+export default CampaignDetails;
