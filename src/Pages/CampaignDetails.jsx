@@ -52,6 +52,34 @@ const CampaignDetails = () => {
   if (error) return <p>{error}</p>;
   if (!campaignData) return <p>No campaign data available.</p>;
 
+  const handleJoin= async() => {
+    const Url= `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${campaignData.data.id}/join`
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+      
+
+    try {
+      const response = await fetch(Url, {
+          
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+
+      });
+
+      const data = await response.json();
+      console.log("API Response:", data);
+      if (response.ok){
+        console.log("Joined");
+      }
+    }catch (error) {
+      console.error("Error:", error);
+
+  }
+}
+
    
 
   return (
@@ -70,7 +98,7 @@ const CampaignDetails = () => {
           deadline={campaignData.data.end_date}
           creator={campaignData.data.created_by?.name}
         />
-        <button onClick={() => navigate(`/campaign/${campaignData.id}/modalities`)} className="createCampaignBtn">
+        <button onClick={ handleJoin  }className="createCampaignBtn">
           Join Campaign
         </button>
       </div>
