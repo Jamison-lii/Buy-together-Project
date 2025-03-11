@@ -116,7 +116,7 @@ html, body {
 }
 
 .button1 {
-    background-color: rgb(156, 7, 7);
+    background-color: rgb(40, 174, 3);
     margin-bottom: 10px;
     width: 220%;
     
@@ -129,6 +129,11 @@ html, body {
 .button2 {
     background-color: #131313;
     color: white;
+}
+.button3{
+    background-color:   rgb(156, 7, 7);
+    margin-top: 10px;
+    width: 220%;
 }
 
 /* Responsive Adjustments */

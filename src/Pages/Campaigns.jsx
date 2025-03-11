@@ -20,9 +20,40 @@ console.log("This is the username:", user.name);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const { setCamp } = useSearch();
+  const { camp, setCamp } = useSearch();
 
   const [menu, setMenu] = useState("ForYou");
+
+  const handleDelete= async()=> {
+    const Url= `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${camp.id}`
+    const token = localStorage.getItem("token");
+     
+
+    try {
+      const response = await fetch(Url, {
+        // mode:"no-cors",
+        method: "DELETE",
+        headers: {
+          //   "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+
+          Accept: "application/json",
+        },
+       
+      });
+
+      const data = await response.json();
+
+      if(response.ok){
+        console.log("good to go");
+        console.log(data);
+      }
+
+  }catch (error){
+    console.log("Error:", error);
+  }
+
+}
 
   const fetchPurchaseGoal = async () => {
     const url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals`;
@@ -176,7 +207,9 @@ console.log("This is the username:", user.name);
                       <div  onClick={() => { {
                       navigate(`/updateCampaign`);
                     }} } className=" button2"><p>Update</p></div>
+                    <div className="button3 " onClick={handleDelete}><p>Delete</p></div>
                      </div>
+                     
                      
             </div>
           ) : (
