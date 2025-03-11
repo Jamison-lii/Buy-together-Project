@@ -5,6 +5,7 @@ import Card from "../Components/Cards/Card";
 import all_product from "../Components/1RenderingAssets/all_product";
 import new_collections from "../Components/1RenderingAssets/new_collections";
 import { useNavigate } from "react-router-dom";
+import { useSearch } from "../Context/SearchContext";
 
 const Campaigns = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ console.log("This is the username:", user.name);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { setCamp } = useSearch();
 
   const [menu, setMenu] = useState("ForYou");
 
@@ -139,32 +141,43 @@ console.log("This is the username:", user.name);
              <div className="campaign-contain"> 
               {allCampaigns.map((product) => {
                 return (
+                  
                   <div
                     key={product.id}
-                    onClick={() => {
+                    onClick={() => {{ setCamp(product);
                       navigate(`/campaign/${product.id}`);
-                    }}
+                    }}}
                   >
+                   
+                    
                     {console.log("this is product///////////:",product.created_by.name)}
                     {
                       user.name === product.created_by.name?<div>
-
+                      {setCamp(product)}
+                      {console.log('this is what is being sent to the update page',product)}
                     <Card
                       key={product.id}
                       image={product.product?.image}
                       name={product.title}
                       new_price={product.product?.bulk_price}
                     />
-                     <div className="two-buttons ">
-                      <div className="button1 "><p>Pay</p></div>
-                      <div className=" button2"><p>Update</p></div>
-                     </div>
+                     
                     </div>:<></> }
+                    
+                    
                   </div>
+
+                   
                 );
               })}
             </div> 
-            
+            <div className="two-buttons ">
+                      <div className="button1 "><p>Pay</p></div>
+                      <div  onClick={() => { {
+                      navigate(`/updateCampaign`);
+                    }} } className=" button2"><p>Update</p></div>
+                     </div>
+                     
             </div>
           ) : (
             <></>

@@ -16,6 +16,7 @@ import CampaignDetails from './Pages/CampaignDetails'
 import { SearchProvider } from './Context/SearchContext.jsx'
 import CampaignModalities from './Pages/CampaigModalities.jsx'
 import SelectProducts from './Pages/SelectProducts.jsx'
+import UpdateCampaign from './Pages/UpdateCampaign.jsx'
 
 
 
@@ -44,6 +45,7 @@ function App() {
         <Route path='/auth' element={<Auth/>}/>
         <Route path='/createCampaign' element={<CreateCampaign/>}/>
         <Route path='/createCampaign/selectProduct' element={<SelectProducts/>}/>
+        <Route path='/updateCampaign' element={<UpdateCampaign/>}/>
         
         
         
