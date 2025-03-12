@@ -9,51 +9,38 @@ import { useSearch } from "../Context/SearchContext";
 
 const Campaigns = () => {
   const navigate = useNavigate();
-
-const user = JSON.parse(localStorage.getItem("user")) || {}; 
-console.log("This is the token:", user);
-console.log("This is the username:", user.name);
-
-  console.log("This is the token:", user);
-  console.log("This is the token:", user.name);
+  const user = JSON.parse(localStorage.getItem("user")) || {};
   const [allCampaigns, setAllCampaigns] = useState([]);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { camp, setCamp } = useSearch();
-
   const [menu, setMenu] = useState("ForYou");
 
-  const handleDelete= async()=> {
-    const Url= `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${camp.id}`
+  const handleDelete = async () => {
+    const Url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${camp.id}`;
     const token = localStorage.getItem("token");
-     
 
     try {
       const response = await fetch(Url, {
-        // mode:"no-cors",
         method: "DELETE",
         headers: {
-          //   "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
-
           Accept: "application/json",
         },
-       
       });
 
       const data = await response.json();
 
-      if(response.ok){
-        console.log("good to go");
+      if (response.ok) {
+        console.log("Campaign deleted successfully");
         console.log(data);
+        // Refresh the campaigns list after deletion
+        fetchPurchaseGoal();
       }
-
-  }catch (error){
-    console.log("Error:", error);
-  }
-
-}
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   const fetchPurchaseGoal = async () => {
     const url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals`;
@@ -66,17 +53,15 @@ console.log("This is the username:", user.name);
         },
       });
 
-      console.log(response);
-
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await response.json();
-      console.log("Fetched Purchase Goal:", data);
+      console.log("Fetched Purchase Goals:", data);
       setAllCampaigns(data.data);
     } catch (error) {
-      console.error("Error fetching purchase goal:", error);
+      console.error("Error fetching purchase goals:", error);
       setError("❌ Failed to load campaign details.");
     } finally {
       setLoading(false);
@@ -87,22 +72,18 @@ console.log("This is the username:", user.name);
     fetchPurchaseGoal();
   }, []);
 
-  console.log("all purchase goals:", allCampaigns);
-
   if (loading) return <p>Loading campaign details...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div>
-      <div className="all ">
+      <div className="all">
         <p className="heading1">Campaigns</p>
         <div className="openText">
           <p className="openText1">Get up to 50% off on</p>
           <p className="openText2"> Bulk Purchases</p>
         </div>
         <div className="containerforSearch">
-          {/*  <Search  placeholder= '...Search Campaigns'/>*/}
-
           <div className="sections">
             <div
               className="foryou"
@@ -130,95 +111,83 @@ console.log("This is the username:", user.name);
                 setMenu("MyCampaigns");
               }}
             >
-              MyCampaigns
+              My Campaigns
               {menu === "MyCampaigns" ? <hr /> : <></>}
             </div>
           </div>
 
           {menu === "ForYou" ? (
             <div className="cards-container">
-              {allCampaigns.map((product) => {
-                return (
-                  <div
+              {allCampaigns.map((product) => (
+                <div
+                  key={product.id}
+                  onClick={() => {
+                    navigate(`/campaign/${product.id}`);
+                  }}
+                >
+                  <Card
                     key={product.id}
-                    onClick={() => {
-                      navigate(`/campaign/${product.id}`);
-                    }}
-                  >
-                    <Card
-                      key={product.id}
-                      image={product.product?.image}
-                      name={product.title}
-                      new_price={product.product?.bulk_price}
-                    />{" "}
-                  </div>
-                );
-              })}
+                    image={product.product?.image}
+                    name={product.title}
+                    new_price={product.product?.bulk_price}
+                  />
+                </div>
+              ))}
             </div>
           ) : (
-            //  <div className='cards-container'>
-            //     {new_collections.map((product) =>{
-            //      return <Card key={product.id} image={product.image} name={product.name} new_price={product.new_price} />
-            //  })}
-            //</div>
             <></>
           )}
 
-          {menu == "InProcess" ? <div></div> : <></>}
+          {menu === "InProcess" ? <div></div> : <></>}
 
-          {menu == "MyCampaigns" ? (
-            
+          {menu === "MyCampaigns" ? (
             <div className="cards-container">
-             <div className="campaign-contain"> 
               {allCampaigns.map((product) => {
-                return (
-                  
-                  <div
-                    key={product.id}
-                    onClick={() => {{ setCamp(product);
-                      navigate(`/campaign/${product.id}`);
-                    }}}
-                  >
-                   
-                    
-                    {console.log("this is product///////////:",product.created_by.name)}
-                    {
-                      user.name === product.created_by.name?<div>
-                      {setCamp(product)}
-                      {console.log('this is what is being sent to the update page',product)}
-                    <Card
-                      key={product.id}
-                      image={product.product?.image}
-                      name={product.title}
-                      new_price={product.product?.bulk_price}
-                    />
-                     
-                    </div>:<></> }
-                    
-                    
-                  </div>
-
-                   
-                );
+                if (user.name === product.created_by.name) {
+                  return (
+                    <div key={product.id}>
+                      <div
+                        onClick={() => {
+                          setCamp(product);
+                          navigate(`/campaign/${product.id}`);
+                        }}
+                      >
+                        <Card
+                          key={product.id}
+                          image={product.product?.image}
+                          name={product.title}
+                          new_price={product.product?.bulk_price}
+                        />
+                      </div>
+                      {/* Render the two-buttons div only for the user's campaigns */}
+                      <div className="two-buttons">
+                        <div className="button1">
+                          <p>Pay</p>
+                        </div>
+                        <div
+                          onClick={() => {
+                            setCamp(product);
+                            navigate(`/updateCampaign`);
+                          }}
+                          className="button2"
+                        >
+                          <p>Update</p>
+                        </div>
+                        <div className="button3" onClick={handleDelete}>
+                          <p>Delete</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                } else {
+                  return null; // Skip rendering for campaigns not created by the user
+                }
               })}
-            </div> 
-            <div className="two-buttons ">
-                      <div className="button1 "><p>Pay</p></div>
-                      <div  onClick={() => { {
-                      navigate(`/updateCampaign`);
-                    }} } className=" button2"><p>Update</p></div>
-                    <div className="button3 " onClick={handleDelete}><p>Delete</p></div>
-                     </div>
-                     
-                     
             </div>
           ) : (
             <></>
           )}
         </div>
-        {console.log("username:",user.name)}
-
-      
       </div>
     </div>
   );

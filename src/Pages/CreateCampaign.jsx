@@ -226,7 +226,7 @@ const CreateCampaign = () => {
         <textarea
           name="product_description"
           placeholder="Product Description"
-          value={formData.product_name}
+          value={formData.product_description}
           onChange={handleChange}
           required
           style={styles.input}
@@ -245,7 +245,7 @@ const CreateCampaign = () => {
         <input
           type="number"
           name="product_bulk_price"
-          placeholder="Unit Price"
+          placeholder="Bulk Price"
           value={formData.product_bulk_price}
           onChange={handleChange}
           required
@@ -323,7 +323,7 @@ const CreateCampaign = () => {
           required
           style={styles.dateInput}
         />
-        <div style={styles.productContainer}>
+        {/* <div style={styles.productContainer}>
           <p style={styles.productText}>
             Selected Product: <strong>{formData.product_name || "None"}</strong>
           </p>
@@ -334,7 +334,7 @@ const CreateCampaign = () => {
           >
             Select Product
           </button>
-        </div>
+        </div> */}
         <input
           type="file"
           accept=".jpeg,.png,.jpg"
