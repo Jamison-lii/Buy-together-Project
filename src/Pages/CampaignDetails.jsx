@@ -39,6 +39,7 @@ const CampaignDetails = () => {
       });
 
       console.log(response); 
+      toast.success("joined successfully");
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
