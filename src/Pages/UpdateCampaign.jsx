@@ -25,7 +25,7 @@ const UpdateCampaign = () => {
         product_image: null,
       });
 
-    const { camp } =useSearch();
+    const { camp } = useSearch();
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -116,7 +116,7 @@ const UpdateCampaign = () => {
       campaignData.append("end_date", formData.end_date);
       campaignData.append("product_quantity", formData.product_quantity);
   
-
+      console.log(Url);
        
       // Append product-related fields if available
       if (formData.product_name)
@@ -140,42 +140,43 @@ const UpdateCampaign = () => {
         console.log("from cam data",key, value);
       }
 
+      console.log("This is the campaign data", campaignData);
+
       try {
         const response = await fetch(Url, {
-          // mode:"no-cors",
           method: "PUT",
           headers: {
-            //   "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
-  
             Accept: "application/json",
           },
           body: campaignData,
         });
+
+        
   
         const data = await response.json();
         console.log("API Response:", data);
   
         if (response.ok) {
           setMessage("✅ Campaign Created Successfully!");
-          setFormData({
-            campaignName: "",
-            description: "",
-            target_amount: "",
-            amount_per_person: "",
-            // targetPeople: "",
-            // minTargetAmount: "",
-            group_link: "",
-            start_date: "",
-            end_date: "",
-            // product: null,
-            product_name: "",
-            product_description: "",
-            product_unit_price: "",
-            product_bulk_price: "",
-            product_quantity: "",
-            product_image: "",
-          });
+          // setFormData({
+          //   campaignName: "",
+          //   description: "",
+          //   target_amount: "",
+          //   amount_per_person: "",
+          //   // targetPeople: "",
+          //   // minTargetAmount: "",
+          //   group_link: "",
+          //   start_date: "",
+          //   end_date: "",
+          //   // product: null,
+          //   product_name: "",
+          //   product_description: "",
+          //   product_unit_price: "",
+          //   product_bulk_price: "",
+          //   product_quantity: "",
+          //   product_image: "",
+          // });
   
           // navigate("/");
         } else {

@@ -17,6 +17,8 @@ import { SearchProvider } from './Context/SearchContext.jsx'
 import CampaignModalities from './Pages/CampaigModalities.jsx'
 import SelectProducts from './Pages/SelectProducts.jsx'
 import UpdateCampaign from './Pages/UpdateCampaign.jsx'
+import { ToastContainer, toast } from 'react-toastify';
+import ViewRequests from './Pages/ViewRequests.jsx'
 
 
 
@@ -46,12 +48,13 @@ function App() {
         <Route path='/createCampaign' element={<CreateCampaign/>}/>
         <Route path='/createCampaign/selectProduct' element={<SelectProducts/>}/>
         <Route path='/updateCampaign' element={<UpdateCampaign/>}/>
-        
+        <Route path='/viewParticipants' element={<ViewRequests/>}/>
         
         
       </Routes>
 
       </SearchProvider>
+      <ToastContainer/>
       </BrowserRouter>
     </>
   )

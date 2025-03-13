@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearch } from "../Context/SearchContext";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify'
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
@@ -162,6 +163,7 @@ const CreateCampaign = () => {
 
       if (response.ok) {
         setMessage("✅ Campaign Created Successfully!");
+        toast.success("Campaign Created Successfully!");
         setFormData({
           campaignName: "",
           description: "",
@@ -184,6 +186,7 @@ const CreateCampaign = () => {
         // navigate("/");
       } else {
         setMessage(data.message || "❌ Failed to create campaign.");
+        toast.error("Failed to create campaign");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -346,6 +349,7 @@ const CreateCampaign = () => {
           Create Campaign
         </button>
       </form>
+      <ToastContainer/>
     </div>
   );
 };

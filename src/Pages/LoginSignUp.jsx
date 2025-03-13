@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import "./Styles/LoginSignUp.css";
+import { toast , ToastContainer} from "react-toastify"
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -109,11 +110,12 @@ const Auth = () => {
         localStorage.setItem("token", data.data.token);
         setUser(data.user);
         console.log("User logged in:", data.data.user);
-        alert("Success");
+        toast.success("Success");
 
         navigate("/"); // Redirect to Home Page after login
       } else {
         setError(data.message || "Login failed");
+        toast.error(" failed");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -129,11 +131,12 @@ const Auth = () => {
       console.error("No token found. Redirecting to login.");
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+      
       setUser(null);
       navigate("/auth");
       return;
     }
-  
+  else{
     try {
       const response = await fetch("https://rrn24.techchantier.site/buy-together-api/public/api/logout", {
         method: "POST",
@@ -150,16 +153,19 @@ const Auth = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         setUser(null);
-        alert("Successfully logged out.");
+        toast.success("Successfully logged out.");
         navigate("/auth"); // Redirect to login page
       } else {
         console.error("Logout failed:", data);
         alert(data.message || "Logout failed, try again.");
+        navigate("/auth");
       }
     } catch (error) {
       console.error("Error during logout:", error);
       alert("Something went wrong. Try again.");
+    
     }
+  }
   };
   
 
@@ -236,6 +242,7 @@ const Auth = () => {
           </>
         )}
       </div>
+      <ToastContainer/>
     </div>
   );
 };

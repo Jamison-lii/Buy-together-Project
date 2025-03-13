@@ -101,7 +101,7 @@ const Campaigns = () => {
                 setMenu("InProcess");
               }}
             >
-              In Process
+             In Process 
               {menu === "InProcess" ? <hr /> : <></>}
             </div>
 
@@ -121,9 +121,9 @@ const Campaigns = () => {
               {allCampaigns.map((product) => (
                 <div
                   key={product.id}
-                  onClick={() => {
+                  onClick={() => {{ setCamp(product);
                     navigate(`/campaign/${product.id}`);
-                  }}
+                  }}}
                 >
                   <Card
                     key={product.id}
@@ -173,8 +173,8 @@ const Campaigns = () => {
                         >
                           <p>Update</p>
                         </div>
-                        <div className="button3" onClick={handleDelete}>
-                          <p>Delete</p>
+                        <div className="button3" onClick={()=>{setCamp(product); handleDelete()}}> 
+                          <p>Delete</p> 
                         </div>
                       </div>
                     </div>

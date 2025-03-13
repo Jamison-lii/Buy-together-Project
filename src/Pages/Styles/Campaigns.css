@@ -14,8 +14,9 @@ html, body {
 /* Main Container */
 .all {
     margin: 0 auto; /* Center content */
-    max-width: 100%; /* Prevents overflow */
+    max-width: 100%; /* Prevents overflow */ 
     overflow-x: hidden;
+    
 }
 
 /* Heading */

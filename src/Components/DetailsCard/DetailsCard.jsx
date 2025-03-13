@@ -6,9 +6,9 @@ const DetailsCard = (prop) => {
     <div className='details_'>
          <h1>{prop.name}</h1>
     <img src={prop.image} alt={prop.name} />
-    <p className='p1'>Price: ${prop.new_price}</p>
+    <p className='p1'>Price: {prop.new_price} CFA</p>
     <p className='p2'>Category: {prop.category}</p>
-    <p className='p3'>Bulk Price: {prop.discount} </p>
+    <p className='p3'>Bulk Price: {prop.discount} CFA </p>
     <p className='p4'>Description: {prop.description}</p>
 
     {  (prop.deadline)?
