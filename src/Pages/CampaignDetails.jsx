@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify'
 const CampaignDetails = () => {
   const navigate = useNavigate();
 
-  const { camp } = useSearch();
+  const { camp, setCamp } = useSearch();
   const [campaignData, setCampaignData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -20,6 +20,7 @@ const CampaignDetails = () => {
   useEffect(() => {
     if (camp && camp.id) {
       fetchPurchaseGoalById(camp.id);
+      setCamp(camp);
     } else {
       setLoading(false);
       setError("No campaign selected.");

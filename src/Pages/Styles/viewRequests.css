@@ -1,0 +1,160 @@
+/* General Styling */
+.members-container {
+    padding: 20px;
+    background-color: #ffffff; /* Light background */
+    color: #333; /* Dark text color */
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .members-title {
+    color: #333; /* Dark title */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+  /* Tabs Styling */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  
+  .tab-button {
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text color */
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .tab-button.active {
+    background-color: #4caf50; /* Green for active tab */
+    color: #fff; /* White text */
+    border-color: #4caf50;
+  }
+  
+  .tab-button:hover {
+    background-color: #f0f0f0; /* Light gray on hover */
+  }
+  
+  /* Members List Styling */
+  .members-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Member Card Styling */
+  .member-card {
+    background-color: #fff; /* White background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .member-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+  }
+  
+  .member-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .member-name {
+    color: #333; /* Dark text */
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  
+  .member-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+  .member-status.approved {
+    background-color: #4caf50; /* Green for approved */
+    color: #fff;
+  }
+  
+  .member-status.pending {
+    background-color: #ff9800; /* Orange for pending */
+    color: #fff;
+  }
+  
+  .member-status.declined {
+    background-color: #f44336; /* Red for declined */
+    color: #fff;
+  }
+  
+  .member-details {
+    color: #666; /* Gray text */
+  }
+  
+  .member-details p {
+    margin: 5px 0;
+  }
+  
+  .member-details strong {
+    color: #333; /* Dark text for labels */
+  }
+  
+  /* Approve Button Styling */
+  .approve-button {
+    background-color: #4caf50; /* Green for approve button */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .approve-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+
+  .decline-button {
+    background-color: rgb(216, 11, 11); /* Green for approve button */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .decline-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  
+  /* Loading and Error Styling */
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .no-members {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+  }
