@@ -4,15 +4,17 @@ import DetailsCard from '../Components/DetailsCard/DetailsCard';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
+
 const CampaignDetails = () => {
   const navigate = useNavigate();
-  const { camp, setCamp } = useSearch();
+  const { camp, setCamp, order, setOrder } = useSearch();
   const [campaignData, setCampaignData] = useState(null);
   const [members, setMembers] = useState([]); // Initialize as an empty array
   const [specificUser, setSpecificUser] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const user = JSON.parse(localStorage.getItem("user")) || {};
+
 
   // Fetch campaign details only if `camp` exists
   useEffect(() => {
@@ -24,6 +26,9 @@ const CampaignDetails = () => {
       setError("No campaign selected.");
     }
   }, [camp]);
+
+  
+  
 
   const fetchPurchaseGoalById = async (id) => {
     const url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${id}`;
@@ -87,7 +92,7 @@ const CampaignDetails = () => {
       });
     } catch (error) {
       console.error("Error fetching participants:", error);
-      toast.error("Failed to fetch members. Please try again.");
+     // toast.error("Failed to fetch members. Please try again.");
     }
   };
 
@@ -102,6 +107,9 @@ const CampaignDetails = () => {
   const handleJoin = async () => {
     const Url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${campaignData.data.id}/join`;
     const token = localStorage.getItem("token");
+    
+    setOrder(campaignData.data);
+    console.log("this is the order id",order);
 
     if (DateOfToday > endDate) {
       console.log("Campaign has ended");

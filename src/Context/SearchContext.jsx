@@ -9,11 +9,12 @@ export const SearchProvider = ({ children }) => {
   const [prod , setProd] = useState([]);
   const [camp, setCamp] = useState([]);
   const [selectedProd, setSelectedProd] = useState([]);
+  const [order, setOrder] = useState([]);
 
 
 
   return (
-    <SearchContext.Provider value={{ searchResults, setSearchResults ,prod, setProd, camp, setCamp , selectedProd, setSelectedProd}}>
+    <SearchContext.Provider value={{ searchResults, setSearchResults ,prod, setProd, camp, setCamp , selectedProd, setSelectedProd, order, setOrder}}>
       {children}
     </SearchContext.Provider>
   );
