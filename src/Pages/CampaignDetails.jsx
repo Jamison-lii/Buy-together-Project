@@ -108,9 +108,12 @@ const CampaignDetails = () => {
     const Url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${campaignData.data.id}/join`;
     const token = localStorage.getItem("token");
     
-    setOrder(campaignData.data);
+    setOrder((prevOrders) => {
+      console.log("prevOrders:", prevOrders);
+      return [...prevOrders, campaignData.data];
+    });
     console.log("this is the order id",order);
-
+     
     if (DateOfToday > endDate) {
       console.log("Campaign has ended");
       toast.error("Sorry Campaign ended");
