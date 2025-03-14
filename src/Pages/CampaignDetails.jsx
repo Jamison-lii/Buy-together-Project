@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useSearch } from '../Context/SearchContext';
 import DetailsCard from '../Components/DetailsCard/DetailsCard';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify';
 
 const CampaignDetails = () => {
   const navigate = useNavigate();
-
   const { camp, setCamp } = useSearch();
   const [campaignData, setCampaignData] = useState(null);
+  const [members, setMembers] = useState([]); // Initialize as an empty array
+  const [specificUser, setSpecificUser] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-   const user = JSON.parse(localStorage.getItem("user")) || {};
-
-  console.log("this is that info of the user that you wanted",user);
+  const user = JSON.parse(localStorage.getItem("user")) || {};
 
   // Fetch campaign details only if `camp` exists
   useEffect(() => {
@@ -38,17 +36,12 @@ const CampaignDetails = () => {
         },
       });
 
-      console.log(response); 
-      toast.success("joined successfully");
-
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await response.json();
-      console.log("Fetched Purchase Goal:", data);
       setCampaignData(data);
-      console.log("This is campaign data",campaignData);
     } catch (error) {
       console.error("Error fetching purchase goal:", error);
       setError("❌ Failed to load campaign details.");
@@ -57,55 +50,110 @@ const CampaignDetails = () => {
     }
   };
 
+  // Fetch participants when campaignData is available
+  useEffect(() => {
+    if (campaignData && campaignData.data && campaignData.data.id) {
+      display(campaignData.data.id);
+    }
+  }, [campaignData]);
+
+  const display = async (campaignId) => {
+    const url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${campaignId}/participants`;
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch members");
+      }
+
+      const data = await response.json();
+      setMembers(data.data); // Update members state with fetched data
+
+      // Log members after state update
+      data.data.forEach((member) => {
+        console.log("Here", member);
+
+        if (user.id == member.id && member.status == "approved") {
+          setSpecificUser(true);
+        }
+      });
+    } catch (error) {
+      console.error("Error fetching participants:", error);
+      toast.error("Failed to fetch members. Please try again.");
+    }
+  };
+
   if (loading) return <p>Loading campaign details...</p>;
   if (error) return <p>{error}</p>;
   if (!campaignData) return <p>No campaign data available.</p>;
-   
-  const campEndDate = campaignData.end_date ? camp.end_date.split("T")[0] : "";
+
+  const campEndDate = campaignData.end_date ? campaignData.end_date.split("T")[0] : "";
   const DateOfToday = new Date();
   const endDate = new Date(campEndDate);
-  console.log(DateOfToday);
 
-  const handleJoin= async() => {
-    const Url= `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${campaignData.data.id}/join`
+  const handleJoin = async () => {
+    const Url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${campaignData.data.id}/join`;
     const token = localStorage.getItem("token");
-    //const user = localStorage.getItem("user");
-       
-    if(DateOfToday > endDate){
-      console.log("Campaign has ended")
-      toast.error("Sorry Campaign ended ");
+
+    if (DateOfToday > endDate) {
+      console.log("Campaign has ended");
+      toast.error("Sorry Campaign ended");
+    } else {
+      try {
+        const response = await fetch(Url, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          toast.success("Joined successfully");
+        } else {
+          toast.error("Error on joining");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
-    else{
+  };
+
+  const handleStatus = async () => {
+    const Url = `https://rrn24.techchantier.site/buy-together-api/public/api/purchase-goals/${campaignData.data.id}/change-status`;
+    const token = localStorage.getItem("token");
+
     try {
       const response = await fetch(Url, {
-          
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "application/json",
         },
-
       });
 
       const data = await response.json();
-      console.log("API Response:", data);
-      if (response.ok){
-        console.log("Joined");
+      if (response.ok) {
+        toast.success("Status changed successfully");
+      } else {
+        toast.error("Error on changing campaign status");
       }
-    }catch (error) {
+    } catch (error) {
       console.error("Error:", error);
-
-  }
-}
-}
-
-
-
-   
+    }
+  };
 
   return (
     <div>
-      
       <div className="camp-details-container">
         <DetailsCard
           id={campaignData.data.id}
@@ -119,22 +167,46 @@ const CampaignDetails = () => {
           presentNumOfParticipants={campaignData.data.number_of_participants}
           deadline={campaignData.data.end_date}
           creator={campaignData.data.created_by?.name}
+          status={campaignData.data.status}
         />
+        {specificUser ? (
+          <div className='ml-12 mb-10'>
+          <a
+            href={campaignData.data.group_link}
+            target="_blank" // Open in a new tab
+            rel="noopener noreferrer" // Security best practice
+            
+          >
+            Group Link: {campaignData.data.group_link}
+          </a>
+          </div>
+        ) : (
+          <></>
+        )}
 
-        {
-         user.id == camp.created_by.id?
-        <button onClick={()=>{navigate("/viewParticipants")}} className="createCampaignBtn">
-          View Requests
-        </button>
-          :<button onClick={ handleJoin  }className="createCampaignBtn">
-          Join Campaign
-        </button>
-        }
+        {user.id === camp.created_by.id ? (
+          <>
+            <button onClick={() => navigate("/viewParticipants")} className="createCampaignBtn">
+              View Requests
+            </button>
+            {campaignData.data.status === "open" ? (
+              <button onClick={handleStatus} className="createCampaignBtn">
+                Close Campaign
+              </button>
+            ) : (
+              <button onClick={handleStatus} className="createCampaignBtn">
+                Open Campaign
+              </button>
+            )}
+          </>
+        ) : (
+          <button onClick={handleJoin} className="createCampaignBtn">
+            Join Campaign
+          </button>
+        )}
       </div>
-      {console.log("This is camp from the home page:", camp)}
 
-      <ToastContainer/>
-    
+      <ToastContainer />
     </div>
   );
 };

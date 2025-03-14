@@ -19,6 +19,7 @@ const DetailsCard = (prop) => {
         {/* <p className='p7'>Maximum number of Participants: {prop.maxNumOfParticipants}</p> */}
         <p className='p8'>Campaign Ends: {prop.deadline}</p>
         <p className='p9'>Creator: {prop.creator}</p>
+        <p className='p9'>Status: {prop.status}</p>
     </div>
     :
     
